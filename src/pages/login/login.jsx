@@ -1,11 +1,9 @@
 import React, { Component } from 'react'
 
-// route component --login
-export default class login extends Component {
+export default class Login extends Component {
   render() {
-    return 
-    (
-      <div>login</div>
+    return (
+      <div>login111</div>
     )
   }
 }

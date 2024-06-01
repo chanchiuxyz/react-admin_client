@@ -57,6 +57,11 @@ update
 
 ```
 
+# coding
+
+# pages
+    create pages/admin/admin.jsx
+           pages/login/login.jsx
 
 
 
