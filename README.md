@@ -20,6 +20,8 @@ npm install antd
 npm react-app-rewired customize-cra babel-plugin-import
 
 npm install less less-loader
+
+npm install less-loader@7.3.0 --save-dev
 ```
 
 create config-overrides.js
@@ -59,10 +61,17 @@ update
 
 # coding
 
-# pages
+## pages
     create pages/admin/admin.jsx
            pages/login/login.jsx
 
+## reset css
+```
+https://github.com/jgthms/minireset.css/blob/master/minireset.css
+```
+
+## login page
+![](./img/login.png) 
 
 
 
