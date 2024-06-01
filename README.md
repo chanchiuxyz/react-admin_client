@@ -4,7 +4,61 @@
 create react-admin_client
 npm start
 
+
+npm install -g serve
+npm run build
+serve build 
+<!-- it works -->
+
+npm install react-router-dom
+
 ```
+
+# UI framework
+```
+npm install antd
+npm react-app-rewired customize-cra babel-plugin-import
+
+npm install less less-loader
+```
+
+create config-overrides.js
+<!-- package only the imported components -->
+```
+const {override, fixBabelImports} = require('customize-cra');
+
+module.exports = override(
+    fixBabelImports('import',{
+        librayName: 'antd',
+        libraryDirectory: 'es',
+        style: 'css'
+    }),
+);
+```
+
+package.json
+delete
+```
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+```
+update
+```
+  "scripts": {
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
+    "eject": "react-scripts eject"
+  },
+
+```
+
+
+
 
 
 # Getting Started with Create React App
