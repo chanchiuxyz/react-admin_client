@@ -1,13 +1,42 @@
 import React, { Component } from 'react'
 
 import { Button, Form, Input } from 'antd';
+import axios from 'axios'
 
 
 import './login.css'
 // import './login.less'
 import logo from '../../logo.svg';
+// import Password from 'antd/es/input/Password';
 
 export default class Login extends Component {
+    // submit username and password to login
+    onFinish = (values) => {
+        console.log('Success:', values);
+        axios.post('http://localhost:3000/login',{
+            
+                username: values.username,
+                password: values.password
+            
+        }).then(
+            response => {
+                if (response.data.status === 0) {
+                    console.log('Welcome back')
+                }
+                else if (response.data.status === 1){
+                    console.log('username or password err')
+
+                } 
+                // console.log(response)
+            },
+            error => {
+                console.log(error)
+            }
+        )
+        };
+    onFinishFailed = (errorInfo) => {
+        console.log('Failed:', errorInfo);
+        };
   render() {
     return (
       <div className='login'>
@@ -32,6 +61,9 @@ export default class Login extends Component {
                         initialValues={{
                         remember: true,
                         }}
+
+                        onFinish={this.onFinish}
+                        onFinishFailed={this.onFinishFailed}
                         autoComplete="off"
                     >
                         <Form.Item
@@ -39,10 +71,21 @@ export default class Login extends Component {
                         name="username"
                         rules={[
                             {
-                            required: true,
-                            message: 'Please input your username!',
+                                required: true,
+                                message: 'Please input your username!',
                             },
+                            {
+                                min: 4,
+                                message: 'more than 4 charactors',
+
+                            },
+                            {
+                                max: 12,
+                                message: 'less than 12 charactors',
+
+                            }
                         ]}
+                        initialValue= 'admin'
                         >
                         <Input />
                         </Form.Item>
@@ -54,7 +97,12 @@ export default class Login extends Component {
                             {
                             required: true,
                             message: 'Please input your password!',
+                          
                             },
+                            {
+                                min: 4,
+                                message: '4 or more charators pls',
+                            }
                         ]}
                         >
                         <Input.Password />

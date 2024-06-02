@@ -11,6 +11,7 @@ serve build
 <!-- it works -->
 
 npm install react-router-dom
+ npm install axios
 
 ```
 
@@ -40,7 +41,7 @@ module.exports = override(
 
 package.json
 delete
-```
+```json
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -59,6 +60,15 @@ update
 
 ```
 
+# back-end API
+```
+    node.js-express + MangoDB 
+```
+## front-end proxy from port:3000 to port:5000(back-end)
+```json
+    "proxy":"http://localhost:5000"
+```
+
 # coding
 
 ## pages
@@ -71,7 +81,9 @@ https://github.com/jgthms/minireset.css/blob/master/minireset.css
 ```
 
 ## login page
-![](./img/login.png) 
+![](./screenShot/login.png) 
+## send login request and get the response from server
+![](./screenShot/loginResponse.png)
 
 
 
