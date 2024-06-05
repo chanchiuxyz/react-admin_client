@@ -17,7 +17,7 @@ export default class Login extends Component {
         state = {user:null}
         // submit username and password to login
         onFinish = (values) => {
-            // console.log('Success:', values);
+            console.log('props:', this.props);
             const{username,password} = values
             // axios req 
             

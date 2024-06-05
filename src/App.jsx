@@ -4,6 +4,7 @@ import { useEffect } from 'react'
 
 import Login from './pages/login/login'
 import Admin from './pages/admin/admin'
+import LoginF from './pages/login/loginf'
 import './App.css'
 
 
@@ -21,6 +22,7 @@ function App() {
         {/* Routes instead of Switch in react-router v6 */}
           <Routes>
               <Route path='/login' Component={Login}></Route>
+              <Route path='/loginf' Component={LoginF}></Route>
               <Route path='/admin' Component={Admin}></Route>
 
               <Route path='/' Component={Admin}></Route>         
