@@ -2,9 +2,9 @@
 import { BrowserRouter,Route,Routes } from 'react-router-dom'
 import { useEffect } from 'react'
 
+// import Login from './pages/login/loginclass'
+import Admin from './pages/admin/adminClass'
 import Login from './pages/login/login'
-import Admin from './pages/admin/admin'
-import LoginF from './pages/login/loginf'
 import './App.css'
 
 
@@ -21,8 +21,8 @@ function App() {
         <BrowserRouter>
         {/* Routes instead of Switch in react-router v6 */}
           <Routes>
+              {/* <Route path='/login' Component={Login}></Route> */}
               <Route path='/login' Component={Login}></Route>
-              <Route path='/loginf' Component={LoginF}></Route>
               <Route path='/admin' Component={Admin}></Route>
 
               <Route path='/' Component={Admin}></Route>         

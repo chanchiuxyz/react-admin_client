@@ -1,35 +1,53 @@
-import React, { Component } from 'react'
-import { Navigate } from 'react-router-dom'
-
-// import './index.css';
+import React from 'react';
 import { Flex, Layout } from 'antd';
-
-
-
-import './admin.css'
-
-export default class Admin extends Component {
-
-  
-  
-  render() {
-    const { Header, Footer, Sider, Content } = Layout;
-    const user = JSON.parse(localStorage.getItem('user') || '{}')
-    console.log(user)
-    if (!user || !user._id){
-      return <Navigate to='/login' replace='true' />
-    }
-    return (
-
-      <div className='admin_header'>
-         <h1>hello-----</h1> 
-         <h2>hello {user.username}</h2>
-         <h2>hello {user.username}</h2>
-         <h2>hello {user._id}</h2>
-         <h2>hello-----</h2>
- 
-      </div>
-
-    )
-  }
-}
+const { Header, Footer, Sider, Content } = Layout;
+const headerStyle = {
+  textAlign: 'center',
+  color: '#fff',
+  height: '10%',
+  paddingInline: 48,
+  lineHeight: '640px',
+  backgroundColor: '#4096ff',
+//   width: '100%',
+};
+const contentStyle = {
+  textAlign: 'center',
+  minHeight: 120,
+  lineHeight: '120px',
+  color: '#fff',
+  backgroundColor: '#0958d9',
+};
+const siderStyle = {
+  textAlign: 'center',
+  lineHeight: '100%',
+  height: '100%',
+  color: '#fff',
+  backgroundColor: '#1677ff',
+};
+const footerStyle = {
+  textAlign: 'center',
+  color: '#fff',
+  height: '10%',
+  backgroundColor: '#4096ff',
+};
+const layoutStyle = {
+  borderRadius: 8,
+  overflow: 'hidden',
+  width: 'calc(50% - 8px)',
+  maxWidth: 'calc(100% - 8px)',
+};
+const Admin = () => (
+  <Flex gap="middle" wrap>  
+  <Layout style={layoutStyle}>
+      <Sider width="8%" style={siderStyle}>
+        Sider
+      </Sider>
+      <Layout>
+        <Header style={headerStyle}>Header</Header>
+        <Content style={contentStyle}>Content</Content>
+        <Footer style={footerStyle}>Footer</Footer>
+      </Layout>
+    </Layout>
+  </Flex>
+);
+export default Admin;
