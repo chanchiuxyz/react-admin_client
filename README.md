@@ -84,6 +84,8 @@ https://github.com/jgthms/minireset.css/blob/master/minireset.css
 ![](./screenShot/login.png) 
 ## send login request and get the response from server
 ![](./screenShot/loginResponse.png)
+## Main Layout
+![](./screenShot/main.png)
 
 
 

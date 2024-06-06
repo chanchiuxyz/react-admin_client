@@ -1,12 +1,17 @@
 import React from 'react';
+import { Navigate } from 'react-router-dom'
 import { Flex, Layout } from 'antd';
+import memoryData from '../../utils/memoryData';
+import MainHeader from '../../components/main-header';
+import MainSider from '../../components/main-sider';
+
 const { Header, Footer, Sider, Content } = Layout;
 const headerStyle = {
   textAlign: 'center',
   color: '#fff',
-  height: '10%',
+  height: '80px',
   paddingInline: 48,
-  lineHeight: '640px',
+  lineHeight: '120px',
   backgroundColor: '#4096ff',
 //   width: '100%',
 };
@@ -33,21 +38,31 @@ const footerStyle = {
 const layoutStyle = {
   borderRadius: 8,
   overflow: 'hidden',
-  width: 'calc(50% - 8px)',
-  maxWidth: 'calc(100% - 8px)',
+//   width: 'calc(50% - 8px)',
+  width: '100%',
+//   maxWidth: 'calc(100% - 8px)',
+  height: '100%',
 };
-const Admin = () => (
-  <Flex gap="middle" wrap>  
+const Admin = () => {
+    const user = memoryData.user
+    console.log(user)
+    if (!user || !user._id){
+      return <Navigate to='/login' replace='true' />
+    }
+    return(
+
   <Layout style={layoutStyle}>
-      <Sider width="8%" style={siderStyle}>
-        Sider
+      <Sider width="15%" style={siderStyle}>
+        <MainSider />
       </Sider>
       <Layout>
-        <Header style={headerStyle}>Header</Header>
+        <Header style={headerStyle}>
+            <MainHeader />
+        </Header>
         <Content style={contentStyle}>Content</Content>
         <Footer style={footerStyle}>Footer</Footer>
       </Layout>
     </Layout>
-  </Flex>
-);
+
+)};
 export default Admin;

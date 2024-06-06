@@ -3,6 +3,10 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import memoryData from './utils/memoryData';
+
+memoryData.user = JSON.parse(localStorage.getItem('user') || '{}');
+console.log('user',memoryData.user)
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

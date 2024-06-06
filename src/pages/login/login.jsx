@@ -3,6 +3,7 @@ import { Navigate} from 'react-router-dom'
 import { Button, Form, Input,message } from 'antd';
 import { reqLogin } from '../../api';
 
+import memoryData from '../../utils/memoryData'
 import './login.css'
 
 // import './login.less'
@@ -23,6 +24,7 @@ const onFinish = (values,setUser) => {
             console.log('Welcome back')   
             message.success('welcome back')    
             localStorage.setItem('user',JSON.stringify(response.data))
+            memoryData.user = response.data
             setUser(username)
             }
             else if (response.status === 1){

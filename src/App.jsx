@@ -3,19 +3,19 @@ import { BrowserRouter,Route,Routes } from 'react-router-dom'
 import { useEffect } from 'react'
 
 // import Login from './pages/login/loginclass'
-import Admin from './pages/admin/adminClass'
+import Admin from './pages/admin/admin'
 import Login from './pages/login/login'
 import './App.css'
 
 
 // import {Button} from 'antd'
 function App() {
-  useEffect(() => {
-    return () => {
-        localStorage.removeItem('user')
-    }
-  },[]
-  )
+  // useEffect(() => {
+  //   return () => {
+  //       localStorage.removeItem('user')
+  //   }
+  // },[]
+  // )
   return (
     <div className="App" >
         <BrowserRouter>
