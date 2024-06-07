@@ -86,6 +86,8 @@ https://github.com/jgthms/minireset.css/blob/master/minireset.css
 ![](./screenShot/loginResponse.png)
 ## Main Layout
 ![](./screenShot/main.png)
+## Routes
+![](./screenShot/route.png)
 
 
 

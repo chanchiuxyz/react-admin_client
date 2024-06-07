@@ -1,9 +1,13 @@
 import React from 'react';
-import { Navigate } from 'react-router-dom'
+import { Navigate, Route, Routes } from 'react-router-dom'
 import { Flex, Layout } from 'antd';
 import memoryData from '../../utils/memoryData';
 import MainHeader from '../../components/main-header';
 import MainSider from '../../components/main-sider';
+import Home from '../home/home';
+import Category from '../category/category';
+import Merchandise from '../merchandise/merchandise';
+import Charts from '../charts/charts';
 
 const { Header, Footer, Sider, Content } = Layout;
 const headerStyle = {
@@ -59,7 +63,20 @@ const Admin = () => {
         <Header style={headerStyle}>
             <MainHeader />
         </Header>
-        <Content style={contentStyle}>Content</Content>
+        <Content style={contentStyle}>
+        {/* <BrowserRouter> */}
+            <Routes>
+               
+                {/* <Route path='/category' element={<Category />} /> */}
+                <Route path='/category' Component={Category} />
+                <Route path='/merchandise' element={<Merchandise />} />
+                <Route path='/charts' element={<Charts />} />
+                <Route path='/home' element={Home} />
+            </Routes>
+       {/* </BrowserRouter> */}
+     
+        </Content>
+
         <Footer style={footerStyle}>Footer</Footer>
       </Layout>
     </Layout>

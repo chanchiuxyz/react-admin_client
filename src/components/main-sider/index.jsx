@@ -1,5 +1,5 @@
 // import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import React, { useState } from 'react';
 import {
@@ -19,40 +19,24 @@ import './index.css'
 
 const items = [
     {
-      key: '1',
+      key: '/home',
       icon: <PieChartOutlined />,
-      label: 'Option 1',
-    },
-    {
-      key: '2',
-      icon: <DesktopOutlined />,
-      label: 'Option 2',
-    },
-    {
-      key: '3',
-      icon: <ContainerOutlined />,
-      label: 'Option 3',
+      label: 'Home Page',
     },
     {
       key: 'sub1',
-      label: 'Navigation One',
+      label: 'Merchandise',
       icon: <MailOutlined />,
       children: [
         {
-          key: '5',
-          label: 'Option 5',
+          key: '/category',
+          icon: <MailOutlined />,
+          label: 'Categories',
         },
         {
-          key: '6',
-          label: 'Option 6',
-        },
-        {
-          key: '7',
-          label: 'Option 7',
-        },
-        {
-          key: '8',
-          label: 'Option 8',
+          key: '/merchandise',
+          icon: <MailOutlined />,
+          label: 'Merchandise',
         },
       ],
     },
@@ -89,14 +73,20 @@ const items = [
 
 export default function MainSider() {
     const [collapsed, setCollapsed] = useState(false);
+    const navigate = useNavigate()
     const toggleCollapsed = () => {
       setCollapsed(!collapsed);
     };
+
+    const handleClick = (e)=> {
+        navigate(e.key,{replace:true})
+
+    }
   return (
 
     <div  className='left-nav'>
         <Link to='/' className='left-nav-header'>
-            <img src={logo} alt="" />
+            <img className='logo' src={logo} alt="" />
             <h1>React BMS</h1>
         </Link>
 
@@ -108,16 +98,18 @@ export default function MainSider() {
           marginBottom: 16,
         }}
       >
-        {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+        {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}00
       </Button>
       <Menu
-        defaultSelectedKeys={['1']}
+        defaultSelectedKeys={['5']}
         defaultOpenKeys={['sub1']}
         mode="inline"
         theme="dark"
         inlineCollapsed={collapsed}
         items={items}
+        onClick={handleClick}
       />
+      {/* <Link to={} /> */}
     </div>
         
     </div>

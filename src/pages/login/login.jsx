@@ -25,7 +25,7 @@ const onFinish = (values,setUser) => {
             message.success('welcome back')    
             localStorage.setItem('user',JSON.stringify(response.data))
             memoryData.user = response.data
-            setUser(username)
+            setUser(response.data)
             }
             else if (response.status === 1){
                 // console.log('username or password err')
@@ -44,7 +44,12 @@ const onFinishFailed = (errorInfo) => {
 };
 const Login = () => {
     const [user,setUser] = useState(null)
-    if (user) return (<Navigate to="/admin" replace={true} />)
+    console.log('11',user)
+    const memUser = memoryData.user
+    if (user) {
+        console.log('ttt')
+        return (<Navigate to="/admin" replace={true} />)
+    }
     else 
     return ( 
    
