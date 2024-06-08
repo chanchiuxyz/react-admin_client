@@ -7,7 +7,9 @@ import MainSider from '../../components/main-sider';
 import Home from '../home/home';
 import Category from '../category/category';
 import Merchandise from '../merchandise/merchandise';
-import Charts from '../charts/charts';
+import Column from '../charts/column';
+import Line from '../charts/line';
+import Pie from '../charts/pie';
 
 const { Header, Footer, Sider, Content } = Layout;
 const headerStyle = {
@@ -68,10 +70,15 @@ const Admin = () => {
             <Routes>
                
                 {/* <Route path='/category' element={<Category />} /> */}
+                <Route path='/' Component={Home} />
                 <Route path='/category' Component={Category} />
-                <Route path='/merchandise' element={<Merchandise />} />
-                <Route path='/charts' element={<Charts />} />
-                <Route path='/home' element={Home} />
+                <Route path='/merchandise' Component={Merchandise } />
+                <Route path='/charts' Component={Column} />
+                <Route path='/column' Component={Column} />
+                <Route path='/line' Component={Line} />
+                <Route path='/pie' Component={Pie} />
+
+                
             </Routes>
        {/* </BrowserRouter> */}
      

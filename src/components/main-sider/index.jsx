@@ -12,66 +12,16 @@ import {
   PieChartOutlined,
 } from '@ant-design/icons';
 import { Button, Menu } from 'antd';
+// menu config
+import menuItem from '../../config/menuConfig'
 
 import logo from '../../pic/logo512.png'
 
 import './index.css'
 
-const items = [
-    {
-      key: '/home',
-      icon: <PieChartOutlined />,
-      label: 'Home Page',
-    },
-    {
-      key: 'sub1',
-      label: 'Merchandise',
-      icon: <MailOutlined />,
-      children: [
-        {
-          key: '/category',
-          icon: <MailOutlined />,
-          label: 'Categories',
-        },
-        {
-          key: '/merchandise',
-          icon: <MailOutlined />,
-          label: 'Merchandise',
-        },
-      ],
-    },
-    {
-      key: 'sub2',
-      label: 'Navigation Two',
-      icon: <AppstoreOutlined />,
-      children: [
-        {
-          key: '9',
-          label: 'Option 9',
-        },
-        {
-          key: '10',
-          label: 'Option 10',
-        },
-        {
-          key: 'sub3',
-          label: 'Submenu',
-          children: [
-            {
-              key: '11',
-              label: 'Option 11',
-            },
-            {
-              key: '12',
-              label: 'Option 12',
-            },
-          ],
-        },
-      ],
-    },
-  ];
 
-export default function MainSider() {
+
+ function MainSider() {
     const [collapsed, setCollapsed] = useState(false);
     const navigate = useNavigate()
     const toggleCollapsed = () => {
@@ -106,7 +56,7 @@ export default function MainSider() {
         mode="inline"
         theme="dark"
         inlineCollapsed={collapsed}
-        items={items}
+        items={menuItem}
         onClick={handleClick}
       />
       {/* <Link to={} /> */}
@@ -115,3 +65,5 @@ export default function MainSider() {
     </div>
   )
 }
+
+export default MainSider;
