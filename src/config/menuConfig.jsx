@@ -13,7 +13,7 @@ import {
 
 const  menuItems = [
     {
-      key: '/',
+      key: '/admin',
       icon: <HomeOutlined />,
       label: 'Home Page',
     },

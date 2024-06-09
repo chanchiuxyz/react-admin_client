@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navigate, Route, Routes,useLocation } from 'react-router-dom'
+import { Navigate,useNavigate, Route, Routes,useLocation } from 'react-router-dom'
 import { Flex, Layout } from 'antd';
 import memoryData from '../../utils/memoryData';
 import MainHeader from '../../components/main-header';
@@ -52,8 +52,10 @@ const layoutStyle = {
 const Admin = () => {
     const user = memoryData.user
     const location = useLocation()
-    console.log(location)
+    // console.log(location)
     if (!user || !user._id){
+    //  const navigate = useNavigate()
+    //   navigate('/login','true')
       return <Navigate to='/login' replace='true' />
     }
     return(
