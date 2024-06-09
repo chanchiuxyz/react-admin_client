@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navigate, Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes,useLocation } from 'react-router-dom'
 import { Flex, Layout } from 'antd';
 import memoryData from '../../utils/memoryData';
 import MainHeader from '../../components/main-header';
@@ -51,7 +51,8 @@ const layoutStyle = {
 };
 const Admin = () => {
     const user = memoryData.user
-    console.log(user)
+    const location = useLocation()
+    console.log(location)
     if (!user || !user._id){
       return <Navigate to='/login' replace='true' />
     }
@@ -70,13 +71,23 @@ const Admin = () => {
             <Routes>
                
                 {/* <Route path='/category' element={<Category />} /> */}
-                <Route path='/' Component={Home} />
+               
+               
+                {/* <Route path='/' Component={Home} />
                 <Route path='/category' Component={Category} />
                 <Route path='/merchandise' Component={Merchandise } />
                 <Route path='/charts' Component={Column} />
                 <Route path='/column' Component={Column} />
                 <Route path='/line' Component={Line} />
-                <Route path='/pie' Component={Pie} />
+                <Route path='/pie' Component={Pie} /> */}
+
+                <Route path='/' element={<Home />} />
+                <Route path='/category' element={<Category />} />
+                <Route path='/merchandise' element={<Merchandise />} />
+                <Route path='/charts' element={<Column />} />
+                <Route path='/column' element={<Column />} />
+                <Route path='/line' element={<Line />} />
+                <Route path='/pie' element={<Pie />} />
 
                 
             </Routes>

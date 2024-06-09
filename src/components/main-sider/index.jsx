@@ -29,7 +29,7 @@ import './index.css'
     };
 
     const handleClick = (e)=> {
-        navigate(e.key,{replace:true})
+        navigate(e.key)
 
     }
   return (
@@ -51,8 +51,8 @@ import './index.css'
         {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}00
       </Button>
       <Menu
-        defaultSelectedKeys={['5']}
-        defaultOpenKeys={['sub1']}
+        defaultSelectedKeys={['/home']}
+        defaultOpenKeys={['Merchandise']}
         mode="inline"
         theme="dark"
         inlineCollapsed={collapsed}

@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-import { Navigate} from 'react-router-dom'
+import { Navigate, useNavigate,useLocation} from 'react-router-dom'
 import { Button, Form, Input,message } from 'antd';
 import { reqLogin } from '../../api';
 
@@ -11,13 +11,28 @@ import logo from '../../logo.svg';
 
 
 
-const onFinish = (values,setUser) => {
-    // console.log('props:', props);
+const onFinish = (async(values,setUser) => {
+    console.log(values)
+    
     const{username,password} = values
     // axios req 
-    
+    // const [location,setLocation] = useLocation();
 
-    reqLogin(username,password).then(
+    const result = await reqLogin(username,password)
+    console.log('await',result)
+    if (result.status === 0) {
+        // console.log('Welcome back')   
+        message.success('welcome back')    
+        localStorage.setItem('user',JSON.stringify(result.data))
+        memoryData.user = result.data
+        setUser(result.data)
+        }
+    else{
+        message.error(result.msg)
+    }
+
+/*   //await async alternative .then    
+     reqLogin(username,password).then(
                 response => {
                    
             if (response.status === 0) {
@@ -37,18 +52,23 @@ const onFinish = (values,setUser) => {
             console.log(error)
             message.error(error)
         }
-    )
-};
+    ) */
+});
 const onFinishFailed = (errorInfo) => {
   console.log('Failed:', errorInfo);
 };
 const Login = () => {
     const [user,setUser] = useState(null)
-    console.log('11',user)
+    let location = useLocation()
+    const navigate = useNavigate()
+    // console.log(location)
+    // console.log('11',user)
+
     const memUser = memoryData.user
     if (user) {
-        console.log('ttt')
-        return (<Navigate to="/admin" replace={true} />)
+        navigate('/admin',{state:{name:user.username,password:user.password}})
+        console.log('lll',location.state)
+        // return (<Navigate to="/admin" replace={true} />)
     }
     else 
     return ( 

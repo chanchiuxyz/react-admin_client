@@ -5,6 +5,7 @@ import  { message } from 'antd'
 // rewrite ajax
 
 const ajax = (url, data={}, method='get') => {
+    // console.log('axios',data)
     return new Promise(function (resolve, reject) {
         let promise
         // ajax asyn request
