@@ -67,7 +67,7 @@ const Login = () => {
     const memUser = memoryData.user
     if (user) {
         navigate('/admin',{state:{name:user.username,password:user.password}})
-        console.log('lll',location.state)
+        // console.log('lll',location.state)
         // return (<Navigate to="/admin" replace={true} />)
     }
     else 

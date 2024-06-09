@@ -86,11 +86,10 @@ https://github.com/jgthms/minireset.css/blob/master/minireset.css
 ![](./screenShot/loginResponse.png)
 ## Main Layout
 ![](./screenShot/main.png)
-## Routes
-![](./screenShot/route.png)
 ## icon and Routes components
 ![](./screenShot/icon.png)
-
+## header
+![](./screenShot/header.png)
 
 
 # Getting Started with Create React App

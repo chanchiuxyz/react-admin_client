@@ -1,6 +1,7 @@
 .left-nav {
     display: flex;
     flex-direction: column;
+    /* background-color: red; */
 }
 
 .left-nav-header {
