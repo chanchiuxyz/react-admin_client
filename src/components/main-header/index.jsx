@@ -1,6 +1,8 @@
 import React, { useState,useEffect }  from 'react'
 import { useLocation,useNavigate } from 'react-router-dom'
-import { Button } from 'antd';
+import { Button, Modal } from 'antd'
+import { ExclamationCircleOutlined } from '@ant-design/icons'
+
 import memoryData from '../../utils/memoryData';
 import { formateDate } from '../../utils/dateUtils';
 import menuItems from '../../config/menuConfig'
@@ -14,11 +16,28 @@ export default function MainHeader() {
   const location = useLocation();
   // console.log(location)  
   const navigate = useNavigate()
+  // const [modal, contextHolder] = Modal.useModal();
 
   const logout = () => {
-    localStorage.removeItem('user')
-    memoryData.user = null
-    navigate('/login')
+
+
+        Modal.confirm({
+        title: 'Logout Confirm?',
+        icon: <ExclamationCircleOutlined />,
+        okText: 'Yes',
+        cancelText: 'No',
+        onOk() {
+          // console.log('OK')
+          localStorage.removeItem('user')
+          memoryData.user = null
+          navigate('/login')
+        },
+        onCancel() {
+          console.log('Cancel');
+        },
+      })
+
+
   
   }
 

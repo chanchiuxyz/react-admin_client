@@ -24,15 +24,16 @@ const  menuItems = [
       children: [
 
         {
-          key: '/merchandise',
-          icon: <ProductOutlined />,
-          label: 'Merchandise',
-        },
-        {
           key: '/category',
           icon: <BarsOutlined />,
           label: 'Categories',
         },
+        {
+          key: '/merchandise',
+          icon: <ProductOutlined />,
+          label: 'Merchandise',
+        },
+
       ],
     },
     {

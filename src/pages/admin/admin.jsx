@@ -18,7 +18,7 @@ const headerStyle = {
   height: '80px',
   paddingInline: 0,
   lineHeight: '120px',
-  backgroundColor: '#4096ff',
+  // backgroundColor: '#4096ff',
 //   width: '100%',
 };
 const contentStyle = {
@@ -26,20 +26,20 @@ const contentStyle = {
   minHeight: 120,
   lineHeight: '120px',
   color: '#fff',
-  backgroundColor: '#0958d9',
+  // backgroundColor: '#0958d9',
 };
 const siderStyle = {
   textAlign: 'center',
   lineHeight: '100%',
   height: '100%',
   color: '#fff',
-  backgroundColor: '#1677ff',
+  // backgroundColor: '#1677ff',
 };
 const footerStyle = {
   textAlign: 'center',
   color: '#fff',
   height: '10%',
-  backgroundColor: '#4096ff',
+  // backgroundColor: '#4096ff',
 };
 const layoutStyle = {
   borderRadius: 8,
