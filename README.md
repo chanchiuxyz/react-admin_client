@@ -95,6 +95,14 @@ https://github.com/jgthms/minireset.css/blob/master/minireset.css
 ## Category
 ![](./screenShot/category.png)
 
+## finished the function of add category to MongoDB 
+
+## back-end and API coding async 
+```
+https://github.com/chanchiuxyz/react-admin-server
+
+```
+
 
 
 # Getting Started with Create React App
