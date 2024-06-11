@@ -31,6 +31,18 @@ export default function Category() {
       dataIndex: 'name',
       key: 'name',
     },
+    {
+      title: 'Action',
+      dataIndex: '',
+      key: 'categoryModify',
+      width: 330,
+      render: () =>(
+      <span>
+        <Button type='link'>Modify</Button>
+        <Button type='link'>View</Button>
+      </span>)
+      ,
+    },
   ];
 
   const title = 'Category I'
@@ -50,7 +62,12 @@ export default function Category() {
           //   width: 600,
           // }}
         >
-            <Table dataSource={dataSource} columns={columns} />;
+            <Table 
+                dataSource={dataSource} 
+                columns={columns} 
+                bordered
+            
+            />;
         </Card>
       </Space>
   </div>
