@@ -1,4 +1,4 @@
-# start
+# start (Jun/1/2024)
 
 ```
 create react-admin_client
@@ -60,7 +60,7 @@ update
 
 ```
 
-# back-end API
+# back-end API (Jun/3/2024)
 ```
     node.js-express + MangoDB 
 ```
@@ -71,7 +71,7 @@ update
 
 # coding
 
-## pages
+## pages 
     create pages/admin/admin.jsx
            pages/login/login.jsx
 
@@ -80,24 +80,24 @@ update
 https://github.com/jgthms/minireset.css/blob/master/minireset.css
 ```
 
-## login page
+## login page (Jun/5/2024)
 ![](./screenShot/login.png) 
-## send login request and get the response from server
+## send login request and get the response from server (Jun/6/2024)
 ![](./screenShot/loginResponse.png)
-## Main Layout
+## Main Layout (Jun/7/2024)
 ![](./screenShot/main.png)
-## Icon and Routes components
+## Icon and Routes components (Jun/8/2024)
 ![](./screenShot/icon.png)
-## Header
+## Header (Jun/9/2024)
 ![](./screenShot/header.png)
-## Homepage
+## Homepage (Jun/10/2024)
 ![](./screenShot/homepage.png)
-## Category
+## Category (Jun/10/2024)
 ![](./screenShot/category.png)
 
-## finished the function of add category to MongoDB 
+## finished the function of add category to MongoDB (Jun/11/2024)
 
-## back-end and API coding async 
+## back-end and API coding async (Jun/11/2024)
 ```
 https://github.com/chanchiuxyz/react-admin-server
 
