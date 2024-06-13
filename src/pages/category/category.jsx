@@ -16,6 +16,7 @@ export default function Category() {
 
     const [showStatus,setShowStatus] = useState(0)
     const [categoryObj,setCategoryObj] = useState({})
+    // category parent(category I)
     const [categoryP,setCategoryP] = useState([])
    
     // const[parentId,SetParentId] = useState(0)
@@ -30,20 +31,6 @@ export default function Category() {
         getCategories() 
     },[])
 
-    const dataSource = [
-        {
-            parentId: '0',
-            _id: '11111',
-            name: 'Computer',
-            _v: 0
-        },
-        {
-            parentId: '0',
-            _id: '22222',
-            name: 'Phone',
-            _v: 0
-        },
-      ];
       
       const columns = [
         {
@@ -70,19 +57,23 @@ export default function Category() {
     const showAdd = () => {
         setShowStatus(1)
     }
+
     // cancel add category Form 
     const handleCancel = () => {
         setShowStatus(0)
     } 
+
     // add category to back-end --to to DB
     const addCategory =(async () => {
+
         setShowStatus(0)
+        console.log('category',categoryObj)
         const { categoryName, parentId } = categoryObj 
         console.log(categoryObj)
         const result = await reqAddCategory(categoryName, parentId)
         console.log(result)
         if (result.status === 0) {
-            message.success(categoryName,'added')
+            // message.success(categoryName,'added')
           getCategories() 
         }
         else {
@@ -127,6 +118,8 @@ export default function Category() {
                   >
                       <AddForm
                           categoryObj={getCategoryObj}
+                          categoryP = {categoryP}
+                          
                           // parentId={getParentId}
                       />
                   </Modal> 
