@@ -1,10 +1,10 @@
 import React from 'react'
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 
 import { Button, Card, Space, Table, Modal, message } from 'antd';
 import {PlusOutlined} from '@ant-design/icons';
 import AddForm from './add-form'
-import {reqAddCategory } from '../../api'
+import {reqAddCategory, reqGetCategories } from '../../api'
 
 import './category.css'
 
@@ -14,9 +14,21 @@ import './category.css'
 
 export default function Category() {
 
-    const[showStatus,setShowStatus] = useState(0)
-    const[categoryObj,setCategoryObj] = useState({})
+    const [showStatus,setShowStatus] = useState(0)
+    const [categoryObj,setCategoryObj] = useState({})
+    const [categoryP,setCategoryP] = useState([])
+   
     // const[parentId,SetParentId] = useState(0)
+    const getCategories = async(parentId=0) => {
+        const result = await reqGetCategories(parentId)
+        console.log('resut',result)
+        setCategoryP(result.data)
+
+    }
+    // get Category I
+    useEffect(()=>{
+        getCategories() 
+    },[])
 
     const dataSource = [
         {
@@ -62,14 +74,16 @@ export default function Category() {
     const handleCancel = () => {
         setShowStatus(0)
     } 
-    // add category
+    // add category to back-end --to to DB
     const addCategory =(async () => {
+        setShowStatus(0)
         const { categoryName, parentId } = categoryObj 
         console.log(categoryObj)
         const result = await reqAddCategory(categoryName, parentId)
         console.log(result)
         if (result.status === 0) {
-          console.log('added category')
+            message.success(categoryName,'added')
+          getCategories() 
         }
         else {
           message.error(result.msg)
@@ -99,7 +113,7 @@ export default function Category() {
                 // }}
               >
                   <Table 
-                      dataSource={dataSource} 
+                      dataSource={categoryP} 
                       columns={columns} 
                       bordered
                   

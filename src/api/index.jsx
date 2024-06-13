@@ -10,4 +10,8 @@ const BASE = 'http://localhost:3000'
 export const reqLogin = (username, password)=> ajax(BASE + '/login', {username, password}, 'post')
 
 // add category
-export const reqAddCategory = (categoryName, parentId) => ajax(BASE + '/manage/category/add', {categoryName, parentId}, 'POST')
+export const reqAddCategory = (categoryName, parentId) => ajax(BASE + '/manage/category/add', {categoryName, parentId}, 'post')
+
+// get categories
+
+export const reqGetCategories = (parentId = 0) => ajax(BASE + '/manage/category/list',{parentId})
