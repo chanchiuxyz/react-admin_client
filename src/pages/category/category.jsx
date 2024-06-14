@@ -2,7 +2,7 @@ import React from 'react'
 import { useState,useEffect } from 'react';
 
 import { Button, Card, Space, Table, Modal, message } from 'antd';
-import {PlusOutlined} from '@ant-design/icons';
+import {PlusOutlined, ArrowRightOutlined } from '@ant-design/icons';
 import AddForm from './add-form'
 import {reqAddCategory, reqGetCategories } from '../../api'
 
@@ -14,25 +14,55 @@ import './category.css'
 
 export default function Category() {
 
+
     const [showStatus,setShowStatus] = useState(0)
     const [categoryObj,setCategoryObj] = useState({})
+    // categories parent(category I)
+    const [categoriesParent,setCategoriesParent] = useState([])
     // category parent(category I)
-    const [categoryP,setCategoryP] = useState([])
+    const [categoryParent,setCategoryParent] = useState({parentId:'0',name: 'Category I'})
+     // subCategories
+    const [categoriesSub,setCategoriesSub] = useState([])
+    // loading
+    const [loading, setLoading] = useState(false)
    
     // const[parentId,SetParentId] = useState(0)
-    const getCategories = async(parentId=0) => {
+    const getCategories = async(parentId='0') => {
+        // loading...
+        setLoading(true)
         const result = await reqGetCategories(parentId)
+        // loaded...
+        console.log('pp',parentId)
+        setLoading(false)
+        if (parentId === '0'){
+            setCategoriesParent(result.data)
+            console.log('pp',categoriesParent)
+        }
+        else {
+            setCategoriesSub(result.data)
+        }
         console.log('resut',result)
-        setCategoryP(result.data)
 
+        
     }
     // get Category I
     useEffect(()=>{
+
         getCategories() 
     },[])
 
-      
-      const columns = [
+    const showCategories = () => {
+        setCategoryParent({parentId:'0',name: 'Category I'})
+        setCategoriesSub([])
+    }
+    // show Subcategories 
+    const showSubCategories = (category)=> {
+        console.log('sub',category)
+        setCategoryParent({parentId: category._id,name: category.name})
+        // console.log('sub',categoryParent)
+        getCategories(category._id) 
+    }  
+    const columns = [
         {
             title: 'Category',
             dataIndex: 'name',
@@ -42,20 +72,23 @@ export default function Category() {
             title: 'Action',
             dataIndex: '',
             key: 'categoryModify',
-            width: 330,
-            render: () =>(
+            width: 300,
+            render: (category) =>(
             <span>
                 <Button type='link'>Modify</Button>
-                <Button type='link'>View</Button>
+                {categoryParent.parentId === '0' ?  <Button type='link' onClick={()=> showSubCategories(category)}>View SubCategories</Button> : null }
+           
             </span>)
           ,
         },
-      ];
+    ];
 
-    const title = 'Category I'
+
     // show add category Form
     const showAdd = () => {
+        setCategoryParent(categoryParent)
         setShowStatus(1)
+
     }
 
     // cancel add category Form 
@@ -65,7 +98,7 @@ export default function Category() {
 
     // add category to back-end --to to DB
     const addCategory =(async () => {
-
+        // invisible AddForm
         setShowStatus(0)
         console.log('category',categoryObj)
         const { categoryName, parentId } = categoryObj 
@@ -80,7 +113,7 @@ export default function Category() {
           message.error(result.msg)
         }
     })
-
+    // pass the function by props to AddForm
     const getCategoryObj = (categoryName,parentId) => {
         setCategoryObj({categoryName,parentId})
     }
@@ -91,22 +124,37 @@ export default function Category() {
         </Button>
     )
 
-    // Add Category
-
+    
+ 
+    const title =  categoryParent.parentId === '0' ? 'Categories I' : (
+        <span>
+            <Button type='link' onClick={showCategories}>Categories I</Button>
+            <ArrowRightOutlined />
+            <span>{categoryParent.name}</span>
+        </span>
+    )
     return (
       <div className='category'>
           <Space className='space' direction="vertical" >
               <Card className='card'
                 title={title}
+                // title={categoryParent.parentId}
                 extra={<a href="#">{extra}</a>}
                 // style={{
                 //   width: 600,
                 // }}
               >
                   <Table 
-                      dataSource={categoryP} 
+                      dataSource={categoryParent.parentId === '0' ? categoriesParent : categoriesSub} 
+               
                       columns={columns} 
                       bordered
+                      rowKey='_id'
+                      pagination={{defaultPageSize: 5,
+                                   showQuickJumper:true
+                      }}
+                      pag
+                      loading = {loading}
                   
                   />;
                   {/* add category form */}
@@ -118,7 +166,8 @@ export default function Category() {
                   >
                       <AddForm
                           categoryObj={getCategoryObj}
-                          categoryP = {categoryP}
+                          categoriesParent = {categoriesParent}
+                          categoryParent = {categoryParent}
                           
                           // parentId={getParentId}
                       />
