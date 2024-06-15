@@ -94,11 +94,13 @@ https://github.com/jgthms/minireset.css/blob/master/minireset.css
 ![](./screenShot/homepage.png)
 ## Category (Jun/10/2024)
 ![](./screenShot/category.png)
-## addCategory
+## addCategory(Jun/11/2024)
 ![](./screenShot/addCategory.png)
 ![](./screenShot/addedCategory.png)
-## subCategories
+## subCategories(Jun/13/2024)
 ![](./screenShot/subCategories.png)
+## modifyCategory(Jun/14/2024)
+![](./screenShot/modifyCategory.png)
 
 
 ## finished the function of add category to MongoDB (Jun/11/2024)

@@ -3,8 +3,11 @@ import { useState,useEffect } from 'react';
 
 import { Button, Card, Space, Table, Modal, message } from 'antd';
 import {PlusOutlined, ArrowRightOutlined } from '@ant-design/icons';
+//  add category
 import AddForm from './add-form'
-import {reqAddCategory, reqGetCategories } from '../../api'
+// modify category
+import ModifyForm from './modify-form';
+import {reqAddCategory, reqGetCategories, reqModifyCategory } from '../../api'
 
 import './category.css'
 
@@ -14,7 +17,7 @@ import './category.css'
 
 export default function Category() {
 
-
+    // 0: none 1:show add form 2: show modify form
     const [showStatus,setShowStatus] = useState(0)
     const [categoryObj,setCategoryObj] = useState({})
     // categories parent(category I)
@@ -57,11 +60,36 @@ export default function Category() {
     }
     // show Subcategories 
     const showSubCategories = (category)=> {
-        console.log('sub',category)
+        // console.log('sub',category)
         setCategoryParent({parentId: category._id,name: category.name})
         // console.log('sub',categoryParent)
         getCategories(category._id) 
     }  
+
+    // show ModifyForm
+    const showModify = (category) => {
+        // console.log(category)
+        // show modifty form
+        setCategoryObj(category)
+        setShowStatus(2)
+    }
+    // 
+    const modifyCategory = (async() => {
+        // unshow modify form
+        setShowStatus(0)
+        const{_id,name} = categoryObj
+        const result = await reqModifyCategory(_id, name)
+        console.log(result)
+        if (result.status === 0) {
+            message.success('successed')
+            // rerender data
+            getCategories() 
+        }
+        else {
+          message.error(result.msg)
+        }
+
+    })
     const columns = [
         {
             title: 'Category',
@@ -75,7 +103,7 @@ export default function Category() {
             width: 300,
             render: (category) =>(
             <span>
-                <Button type='link'>Modify</Button>
+                <Button onClick={()=> showModify(category)} type='link'>Modify</Button>
                 {categoryParent.parentId === '0' ?  <Button type='link' onClick={()=> showSubCategories(category)}>View SubCategories</Button> : null }
            
             </span>)
@@ -100,13 +128,13 @@ export default function Category() {
     const addCategory =(async () => {
         // invisible AddForm
         setShowStatus(0)
-        console.log('category',categoryObj)
+        // console.log('category',categoryObj)
         const { categoryName, parentId } = categoryObj 
-        console.log(categoryObj)
+        // console.log(categoryObj)
         const result = await reqAddCategory(categoryName, parentId)
         console.log(result)
         if (result.status === 0) {
-            // message.success(categoryName,'added')
+            message.success('successed')
           getCategories() 
         }
         else {
@@ -123,6 +151,15 @@ export default function Category() {
                Add
         </Button>
     )
+
+    const getModifyObj = (categoryName) => {
+        
+        // setCategoryObj({categoryId,categoryName})
+        let newCategory = {...categoryObj}
+        newCategory.name = categoryName
+        setCategoryObj(newCategory)
+        console.log(categoryObj)
+    }
 
     
  
@@ -172,6 +209,20 @@ export default function Category() {
                           // parentId={getParentId}
                       />
                   </Modal> 
+                  {/* modify category form */}
+                  <Modal
+                      title= "Modify category"
+                      open={showStatus === 2}   
+                      onCancel={handleCancel}
+                      onOk={modifyCategory}      
+                  >
+                      <ModifyForm 
+                          setModifyObj = {getModifyObj}
+                          categoryObj = {categoryObj}
+
+                      />
+
+                  </Modal>
               </Card>
               
             </Space>
