@@ -176,7 +176,7 @@ export default function Category() {
               <Card className='card'
                 title={title}
                 // title={categoryParent.parentId}
-                extra={<a href="#">{extra}</a>}
+                extra={extra}
                 // style={{
                 //   width: 600,
                 // }}

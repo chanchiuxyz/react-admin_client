@@ -10,6 +10,7 @@ import Merchandise from '../merchandise/merchandise';
 import Column from '../charts/column';
 import Line from '../charts/line';
 import Pie from '../charts/pie';
+import NotFound from '../../components/notfound/notfound';
 
 const { Header, Footer, Sider, Content } = Layout;
 const headerStyle = {
@@ -85,11 +86,13 @@ const Admin = () => {
 
                 <Route path='/' element={<Home />} />
                 <Route path='/category' element={<Category />} />
-                <Route path='/merchandise' element={<Merchandise />} />
+                <Route path='/merchandise/*' element={<Merchandise />} />
                 <Route path='/charts' element={<Column />} />
                 <Route path='/column' element={<Column />} />
                 <Route path='/line' element={<Line />} />
                 <Route path='/pie' element={<Pie />} />
+                <Route path='*' element={<NotFound />} />
+                
 
                 
             </Routes>

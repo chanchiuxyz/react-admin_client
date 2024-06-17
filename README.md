@@ -102,6 +102,46 @@ https://github.com/jgthms/minireset.css/blob/master/minireset.css
 ## modifyCategory(Jun/14/2024)
 ![](./screenShot/modifyCategory.png)
 
+## merchandise routes 
+### nest routes deep in the tree (V5 , it not works in react-route-dom v6)
+```
+// somewhere up the tree
+<Switch>
+  <Route path="/merchandise" component={Merchandise} />
+</Switch>;
+
+// and now deeper in the tree
+function Users() {
+  return (
+    <div>
+      <Switch>
+        <Route path="/merchandise/detail" component={MerchandiseDetail} />
+      </Switch>
+    </div>
+  );
+}
+```
+### nest routes deep in the tree(react-route-dom v6)
+```
+// somewhere up the tree
+<Routes>
+  <Route path="/merchandise/*" element={<Merchandise />} />
+</Routes>;
+
+// and now deeper in the tree
+function Users() {
+  return (
+    <div>
+      <Routes>
+        <Route path="/detail" element={<MerchandiseDetail />} />
+      </Routes>
+    </div>
+  );
+}
+
+```
+
+
 
 ## finished the function of add category to MongoDB (Jun/11/2024)
 

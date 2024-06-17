@@ -10,12 +10,12 @@ import './App.css'
 
 // import {Button} from 'antd'
 function App() {
-  useEffect(() => {
-    return () => {
-        localStorage.removeItem('user')
-    }
-  },[]
-  )
+  // useEffect(() => {
+  //   return () => {
+  //       localStorage.removeItem('user')
+  //   }
+  // },[]
+  // )
   return (
     <div className="App" >
         <BrowserRouter>
