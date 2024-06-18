@@ -97,12 +97,19 @@ https://github.com/jgthms/minireset.css/blob/master/minireset.css
 ## addCategory(Jun/11/2024)
 ![](./screenShot/addCategory.png)
 ![](./screenShot/addedCategory.png)
+## finished the function of add category to MongoDB (Jun/11/2024)
+
+## back-end and API coding async (Jun/11/2024)
+```
+https://github.com/chanchiuxyz/react-admin-server
+
+```
 ## subCategories(Jun/13/2024)
 ![](./screenShot/subCategories.png)
 ## modifyCategory(Jun/14/2024)
 ![](./screenShot/modifyCategory.png)
 
-## merchandise routes 
+## merchandise routes (Jun/17/2024)
 ### nest routes deep in the tree (V5 , it not works in react-route-dom v6)
 ```
 // somewhere up the tree
@@ -140,16 +147,11 @@ function Users() {
 }
 
 ```
+## page add merchandise(Jun/18/2024)
+![](./screenShot/addMerchandise.png)
 
 
 
-## finished the function of add category to MongoDB (Jun/11/2024)
-
-## back-end and API coding async (Jun/11/2024)
-```
-https://github.com/chanchiuxyz/react-admin-server
-
-```
 
 
 

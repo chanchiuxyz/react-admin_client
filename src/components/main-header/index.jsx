@@ -43,7 +43,10 @@ export default function MainHeader() {
 
    const getTitle = ()=> {
 
-      const path = location.pathname
+      let path = location.pathname
+      const index = path.indexOf('/',1)
+      if ( index >0 ) path = path.slice(0,index)
+      // console.log(path)
       if (path === '/') {
         return 'Homepage'
       }
@@ -61,6 +64,10 @@ export default function MainHeader() {
          }
         }
       })
+      // if (title = ''){
+      //   let title = path.slice(1)
+
+      // } 
       return title
   }
 
