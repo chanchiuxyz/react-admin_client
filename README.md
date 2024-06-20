@@ -150,6 +150,9 @@ function Users() {
 ## page add merchandise(Jun/18/2024)
 ![](./screenShot/addMerchandise.png)
 
+## ## page add merchandise(cascader load categories data from back-end) (Jun/20/2024)
+![](./screenShot/cascaderLoad.png)
+
 
 
 
