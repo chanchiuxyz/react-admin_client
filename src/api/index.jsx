@@ -18,3 +18,9 @@ export const reqGetCategories = (parentId = 0) => ajax(BASE + '/manage/category/
 
 // modify category
 export const reqModifyCategory = ( categoryId,categoryName) => ajax(BASE + '/manage/category/modify', {categoryId, categoryName}, 'post')
+
+// delete picture
+export const reqDeleteImg = (name) => ajax(BASE + '/manage/img/delete', {name}, 'post')
+
+// add merchandise
+export const reqAddMerchandise = (merchandise) => ajax(BASE + '/manage/merchandise/add', merchandise, 'post')

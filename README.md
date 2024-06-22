@@ -150,8 +150,15 @@ function Users() {
 ## page add merchandise(Jun/18/2024)
 ![](./screenShot/addMerchandise.png)
 
-## ## page add merchandise(cascader load categories data from back-end) (Jun/20/2024)
+## page add merchandise(cascader load categories data from back-end) (Jun/20/2024)
 ![](./screenShot/cascaderLoad.png)
+
+## add merchandise -> ajax req -> back-end-> save to DB
+
+![](./screenShot/merchandiseSubmit.png)
+![](./screenShot/merchanBackend.png)
+![](./screenShot/merchanDb.png)
+
 
 
 

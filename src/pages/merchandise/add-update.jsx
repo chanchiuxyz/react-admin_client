@@ -1,24 +1,17 @@
 import React, {useState,useEffect} from 'react'
 
-import {Card, Form, Input, Cascader, Upload, Button} from 'antd'
+import {Card, Form, Input, Cascader, Upload, Button, message} from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
 
-import {reqGetCategories} from '../../api'
+
+
+import {reqGetCategories, reqDeleteImg, reqAddMerchandise} from '../../api'
 import './merchandise.css'
 
 
-const optionLists = [
-  {
-    value: 'zhejiang',
-    label: 'Zhejiang',
-    isLeaf: false,
-  },
-  {
-    value: 'jiangsu',
-    label: 'Jiangsu',
-    isLeaf: false,
-  },
-];
+
+
+
 export default function MerchandiseAddUpdate() {
   // cascader option (categories)
  
@@ -29,14 +22,33 @@ export default function MerchandiseAddUpdate() {
       wrapperCol: {span:8}
   }
 
-  const[options,setOptions] = useState([])
+  const [options,setOptions] = useState([])
+  const [fileList,setFileList] = useState([])
+  const [category,SetCategory] = useState({categoryId:'',pCategoryId:''})
+
+ 
   useEffect(() => {
     console.log(options)
     getCategories('0')
   },[])
   // onSubmit 
-  const formSubmit = (values) => {
+  const formSubmit = async (values) => {
       console.log(values)
+      const {name, desc, price} = values
+      const {categoryId,pCategoryId} = category
+      
+      const imgs = fileList.map((file) => {
+          return file.response.data.name
+      })
+      // console.log(imgs)
+      const merchandise = {name,desc,price,categoryId,pCategoryId,imgs}
+      const result = await reqAddMerchandise(merchandise)
+      if (result.status === 0) {
+          message.success('successed')
+      } else {
+          message.error('err')
+      }
+
   }
   
   const initOptions = async (categories) => {
@@ -92,7 +104,50 @@ export default function MerchandiseAddUpdate() {
 
   const onChange = (value, selectedOptions) => {
     console.log(value, selectedOptions);
+    if (value.length === 1) {
+      SetCategory({categoryId: value[0], pCategoryId: '0'})
+    } 
+    else if (value.length === 2) {
+      SetCategory({categoryId: value[1], pCategoryId: value[1]})
+    }
+
   };
+
+  const handlePreview = (file) => {
+      console.log('handlePreview()', file)
+
+  }
+  const handleUploadChange = async (file) => {
+      // console.log('ff',file.file)
+      if (file.file.status === 'done') {
+        // console.log('uploaded')
+          const result = file.file.response //{status: 0, data: {name: 'xxx.jpg', url: url}}
+          if(result.status === 0) {
+              // message.success('uploaded')
+              // setFileList(file.fileList)
+              // const {name, url} = result.data
+              // console.log(name)
+          } else{
+              message.error('upload err')
+          }
+      } else if (file.status === 'removed') { //remove picture
+        const resultRemove = file.response //{status: 0, data: {name: 'xxx.jpg', url: url}}
+        if(resultRemove.status === 0) {
+            const{name} = resultRemove.data
+            const result = await reqDeleteImg(name)
+            if (result.status) {
+                // message.success('removed')
+                setFileList(file.fileList)
+            } else {
+                message.error('remove error')
+            }
+
+        }
+      }
+      setFileList(file.fileList)
+      console.log('fileList',fileList)
+    
+  }
 
 
   return (
@@ -106,14 +161,14 @@ export default function MerchandiseAddUpdate() {
           >
               {/* Merchandise Name */}
               <Item label='Merchandise Name' 
-                    name='merchandiseName'
+                    name='name'
                     rules={[{ required: true, message: 'Please input Merchandise Name!' }]}
               >
                   <Input placeholder='Merchandise Name' />
               </Item>
               {/* Merchandise Description */}
               <Item label='Merchandise Description' 
-                    name='merchandiseDescri'
+                    name='desc'
                     rules={[{ required: true, message: 'Please input Merchandise Description!' }]}
               >
                   <TextArea placeholder='Merchandise Description' 
@@ -122,7 +177,7 @@ export default function MerchandiseAddUpdate() {
               </Item>
               {/* Merchandise Price */}
               <Item label='Merchandise Price' 
-                    name='merchandisePrice'
+                    name='price'
                     rules={[{ required: true, message: 'Please input Merchandise Price!' }]}
               >
                   <Input type='number'    placeholder='Merchandise Price' 
@@ -131,7 +186,7 @@ export default function MerchandiseAddUpdate() {
               </Item>
               {/* Merchandise Category */}
               <Item label='Merchandise Category' 
-                    name='merchandiseCategory'
+                    name='category'
                     rules={[{required:true, message: 'Please input Merchandise Category!' }]}
               >
                   <Cascader 
@@ -146,13 +201,22 @@ export default function MerchandiseAddUpdate() {
               </Item>
               {/* Merchandise pic upload */}
               <Item label='Merchandise Picture' >
-                  <Upload action="/upload.do" listType="picture-card">
+                  <Upload action="/manage/img/upload" 
+                    accept='image/*'  
+                    name='image' 
+                    listType="picture-card" 
+                    fileList={fileList}
+                    onPreview={handlePreview}
+                    onChange={handleUploadChange}
+                  >
+                  
                 <button style={{ border: 0, background: 'none' }} type="button">
                   <PlusOutlined />
-                  <div style={{ marginTop: 8 }}>Upload</div>
+                  <div style={{ marginTop: 2 }}>Upload</div>
                 </button>
           </Upload>
               </Item>
+
               {/* Submit */}
               <Item label='Submit'>
                     <Button htmlType="submit" ontype='primary' >Submit</Button>
@@ -165,3 +229,5 @@ export default function MerchandiseAddUpdate() {
     
   )
 }
+
+
