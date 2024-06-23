@@ -24,3 +24,6 @@ export const reqDeleteImg = (name) => ajax(BASE + '/manage/img/delete', {name}, 
 
 // add merchandise
 export const reqAddMerchandise = (merchandise) => ajax(BASE + '/manage/merchandise/add', merchandise, 'post')
+
+// get merchandise
+export const reqMerchandise = ({pageNum, pageSize}) => ajax(BASE + '/manage/merchandise/list', {pageNum, pageSize})

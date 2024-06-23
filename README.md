@@ -161,6 +161,9 @@ function Users() {
 ## save to DB
 ![](./screenShot/merchanDb.png)
 
+## merchandise home (get merchandise list from DB )(Jun/23/2024)
+![](./screenShot/merchandiseHome.png)
+
 
 
 
