@@ -15,7 +15,8 @@ export const reqAddCategory = (categoryName, parentId) => ajax(BASE + '/manage/c
 // get categories
 
 export const reqGetCategories = (parentId = 0) => ajax(BASE + '/manage/category/list',{parentId})
-
+// get category name by category id
+export const reqCategoryName = (categoryId) => ajax(BASE + '/manage/category/name', {categoryId})
 // modify category
 export const reqModifyCategory = ( categoryId,categoryName) => ajax(BASE + '/manage/category/modify', {categoryId, categoryName}, 'post')
 

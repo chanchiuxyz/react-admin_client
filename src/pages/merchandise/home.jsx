@@ -117,6 +117,8 @@ export default function MerchandiseHome() {
 // merchandise detail
   const showDetail = (merchandise) => {
     console.log(merchandise)
+    // navigate to merchandise detail and pass the merchandise object to MerchandiseDetail component
+    navigate('/merchandise/detail',{state: merchandise})
 }
 //  edit merchandise
   const showUpdate = (merchandise) => {

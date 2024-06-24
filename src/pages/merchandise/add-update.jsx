@@ -108,7 +108,7 @@ export default function MerchandiseAddUpdate() {
       SetCategory({categoryId: value[0], pCategoryId: '0'})
     } 
     else if (value.length === 2) {
-      SetCategory({categoryId: value[1], pCategoryId: value[1]})
+      SetCategory({categoryId: value[1], pCategoryId: value[0]})
     }
 
   };

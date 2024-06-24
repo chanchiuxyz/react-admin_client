@@ -164,6 +164,15 @@ function Users() {
 ## merchandise home (get merchandise list from DB )(Jun/23/2024)
 ![](./screenShot/merchandiseHome.png)
 
+## merchandise detail(Jun/24/2024)
+![](./screenShot/merchandetail.png)
+
+
+
+
+
+
+
 
 
 
