@@ -1,16 +1,18 @@
 import React from 'react';
 import { Navigate,useNavigate, Route, Routes,useLocation } from 'react-router-dom'
-import { Flex, Layout } from 'antd';
-import memoryData from '../../utils/memoryData';
-import MainHeader from '../../components/main-header';
-import MainSider from '../../components/main-sider';
-import Home from '../home/home';
-import Category from '../category/category';
-import Merchandise from '../merchandise/merchandise';
-import Column from '../charts/column';
-import Line from '../charts/line';
-import Pie from '../charts/pie';
-import NotFound from '../../components/notfound/notfound';
+import { Flex, Layout } from 'antd'
+import memoryData from '../../utils/memoryData'
+import MainHeader from '../../components/main-header'
+import MainSider from '../../components/main-sider'
+import Home from '../home/home'
+import Category from '../category/category'
+import Merchandise from '../merchandise/merchandise'
+import Role from '../role/role'
+import User from '../user/user'
+import Column from '../charts/column'
+import Line from '../charts/line'
+import Pie from '../charts/pie'
+import NotFound from '../../components/notfound/notfound'
 
 const { Header, Footer, Sider, Content } = Layout;
 const headerStyle = {
@@ -87,10 +89,14 @@ const Admin = () => {
                 <Route path='/' element={<Home />} />
                 <Route path='/category' element={<Category />} />
                 <Route path='/merchandise/*' element={<Merchandise />} />
+                <Route path='/role' element={<Role />} />
+                <Route path='/user' element={<User />} />
                 <Route path='/charts' element={<Column />} />
                 <Route path='/column' element={<Column />} />
                 <Route path='/line' element={<Line />} />
                 <Route path='/pie' element={<Pie />} />
+
+
                 <Route path='*' element={<NotFound />} />
                 
 

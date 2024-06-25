@@ -121,6 +121,24 @@ get category I or category II
           }
         ]
       }
+
+
+## get category name by category id
+### reqURL：
+	http://localhost:5000/manage/category/name
+
+### method：
+	GET
+
+### parameter 
+	|parameter		|required |type     |memo
+	|_id           |Y       |string   |category id
+
+### response：：
+{
+    "status": 0,
+    "data": "category name"
+}
   
       
 ## modify category
@@ -141,7 +159,7 @@ get category I or category II
       "status": 0
     }
 
-## 12. add merchandise
+##  add merchandise
 ### reqURL：
     http://localhost:5000/manage/merchandise/add
 
@@ -174,7 +192,7 @@ get category I or category II
         }
     }
 
-## 10. get merchandise
+##  get merchandise
 ### reqURL：
     http://localhost:5000/manage/product/list
 
@@ -245,3 +263,110 @@ get category I or category II
         ]
     }
 }
+
+
+## add user
+
+### reqURL：
+    http://localhost:5000/manage/role/add
+
+### method:
+    POST
+
+### parameter:
+    |parameter |isRequired |type     |memo
+    |roleName    |Y       |string   |role name
+
+### response
+    {
+        "status": 0,
+        "data": {
+            "menus": [],
+            "_id": "id",
+            "name": "role name",
+            "create_time": time,
+            "__v": 0
+        }
+    }
+
+## get roles
+### reqURL：
+    http://localhost:5000/manage/role/list
+
+### method:
+    GET
+
+### parameter: 
+    -
+
+### parameter
+    {
+        "status": 0,
+        "data": [
+            {
+                "menus": [
+                    "/role",
+                    "/charts/bar",
+                    "/home",
+                    "/category"
+                ],
+                "_id": "id",
+                "name": "test",
+                "create_time": time,
+                "__v": 0,
+                "auth_time": time,
+                "auth_name": "admin"
+            },
+            {
+                "menus": [
+                    "/role",
+                    "/charts/bar",
+                    "/home",
+                    "/category"
+                ],
+                "_id": "id",
+                "name": "test",
+                "create_time": time,
+                "__v": 0,
+                "auth_time": time,
+                "auth_name": "admin"
+            },
+
+
+        ]
+    }
+
+## update role (authorize)
+### reqURL：
+    http://localhost:5000/manage/role/update
+
+### method:
+    POST
+
+### parmeter:
+  
+    |parmeter	|isRequired  |type     |memo
+    |_id          |Y       |string   |id
+    |menus        |Y       |array    |path array
+    |auth_time    |Y       |number   |authorize time
+    |auth_name    |Y       |string   |authorizer
+
+### response
+    {
+        "status": 0,
+        "data": {
+            "menus": [
+                "/role",
+                "/charts/bar",
+                "/home",
+                "/category",
+                "/user"
+            ],
+            "_id": "id",
+            "name": "test",
+            "create_time": time,
+            "__v": 0,
+            "auth_time": time,
+            "auth_name": "admin"
+        }
+    }

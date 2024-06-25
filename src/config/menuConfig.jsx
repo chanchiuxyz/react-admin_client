@@ -37,38 +37,14 @@ const  menuItems = [
       ],
     },
     {
-        key: 'Users',
-        label: 'Users',
+        key: '/user',
+        label: 'User',
         icon: <UserOutlined />,
-        children: [
-          {
-            key: '/category',
-            icon: <MailOutlined />,
-            label: 'Categories',
-          },
-          {
-            key: '/merchandise',
-            icon: <MailOutlined />,
-            label: 'Merchandise',
-          },
-        ],
       },
       {
-        key: 'Roles',
-        label: 'Roles',
+        key: '/role',
+        label: 'Role',
         icon: <CheckSquareOutlined />,
-        children: [
-          {
-            key: '/category',
-            icon: <MailOutlined />,
-            label: 'Categories',
-          },
-          {
-            key: '/merchandise',
-            icon: <MailOutlined />,
-            label: 'Merchandise',
-          },
-        ],
       },
       {
         key: '/charts',
