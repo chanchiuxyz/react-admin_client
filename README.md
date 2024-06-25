@@ -167,7 +167,7 @@ function Users() {
 ## merchandise detail(Jun/24/2024)
 ![](./screenShot/merchandetail.png)
 
-## role API (Jun/25/2024)
+## role API and back-end coding (Jun/25/2024)
 ```
 ## add user
 
