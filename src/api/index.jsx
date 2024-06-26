@@ -28,3 +28,13 @@ export const reqAddMerchandise = (merchandise) => ajax(BASE + '/manage/merchandi
 
 // get merchandise
 export const reqMerchandise = ({pageNum, pageSize}) => ajax(BASE + '/manage/merchandise/list', {pageNum, pageSize})
+
+
+// add role
+export const reqCreateRole = (roleName) => ajax(BASE + '/manage/role/create', {roleName}, 'post')
+
+// get roles
+export const reqRoles = () => ajax(BASE + '/manage/role/list')
+
+// update role privilege (authorize) 
+export const reqUpdateRole = (role) => ajax(BASE + '/manage/role/update', role, 'post')

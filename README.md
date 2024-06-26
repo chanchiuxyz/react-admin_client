@@ -172,7 +172,7 @@ function Users() {
 ## add user
 
 ### reqURL：
-    http://localhost:5000/manage/role/add
+    http://localhost:5000/manage/role/create
 
 ### method:
     POST
@@ -276,7 +276,9 @@ function Users() {
     }
 ```
 
-
+## role create(Jun/26/2024)
+![](./screenShot/rolecreate.png)
+![](./screenShot/rolecreatedb.png)
 
 
 

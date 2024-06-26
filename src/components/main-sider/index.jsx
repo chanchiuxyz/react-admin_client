@@ -41,7 +41,7 @@ import './index.css'
         </Link>
 
         <div>
-      <Button
+      {/* <Button
         type="primary"
         onClick={toggleCollapsed}
         style={{
@@ -49,7 +49,7 @@ import './index.css'
         }}
       >
         {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}00
-      </Button>
+      </Button> */}
       <Menu
         defaultSelectedKeys={['/home']}
         defaultOpenKeys={['Merchandise']}
