@@ -283,6 +283,9 @@ function Users() {
 ## dispaly role items (Jun/28/2024)
 ![](./screenShot/role.png)
 
+## role update
+![](./screenShot/roleupdate.png)
+![](./screenShot/roleupdated.png)
 
 
 

@@ -4,11 +4,13 @@ import { Button, Card, Modal, message, Table } from 'antd'
 
 
 import CreateForm from './create-form'
-import {reqCreateRole, reqRoles} from '../../api'
+import {reqCreateRole, reqRoles, reqUpdateRole} from '../../api'
 import { PAGE_SIZE } from '../../utils/constants'
 import {formateDate} from '../../utils/dateUtils'
+import AuthForm from './auth-form'
 
 import './role.css'
+
 
 const columns = [
   {
@@ -23,7 +25,7 @@ const columns = [
 {
     title: 'Authorize time',
     dataIndex: 'auth_time',
-    render: formateDate
+    render: (auth_time) => formateDate(auth_time)
 },
 {
     title: 'Authorizer',
@@ -41,6 +43,10 @@ export default function Role() {
   const [role, setRole] = useState({})
     // role name for create fole
   const[roleName, setRoleName] = useState('')
+  // authority
+  const [authMenus, setAuthMenus] = useState([]) 
+  // Ref auth from
+  // const auth = useRef() 
   // show the roles
   useEffect(() => {
     //  get roles from back-end
@@ -94,8 +100,34 @@ export default function Role() {
         message.error(result.msg)
       }
   }
+  // update role(authorize)
+  const updateRole = async () => {
+      // console.log(authMenus)
+      setIsShowAuth(false)
+      const updateRole = role
+      const menus = authMenus
+      updateRole.menus = menus
+      updateRole.auth_time = Date.now
+      updateRole.auth_name = 'admin'
 
+      const result = await reqUpdateRole(updateRole)
+      
+      if (result.status === 0) {
+          message.success('authorized')
+          getRoles()
+      } else {
+          message.error('authorize err')
+      }
 
+  }
+// 
+  const getAuth = (menu) => {
+      setAuthMenus(menu)
+      const updateRole = role
+      const menus = authMenus
+      updateRole.menus = menus
+      setRoles([...roles])
+  }
   return (
     <Card title={title}
         className='role-form'
@@ -105,7 +137,7 @@ export default function Role() {
         {/* create role form */}
         <Modal
                       title="Create Role"
-                      open={isShowCreate === 1}
+                      open={isShowCreate}
                       onCancel={handleCancel}
                       onOk={createRole}
                   >
@@ -138,12 +170,12 @@ export default function Role() {
             onCancel={() => {
                 setIsShowAuth(false)
             }}
-            // onOk={this.updateRole}
+            onOk={updateRole}
         >
-            {/* <AuthForm
-                ref={this.auth}
+            <AuthForm
+                setAuth={getAuth}
                 role={role}
-            /> */}
+            />
         </Modal>
 
 
