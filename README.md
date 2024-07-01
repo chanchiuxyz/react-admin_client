@@ -283,9 +283,79 @@ function Users() {
 ## dispaly role items (Jun/28/2024)
 ![](./screenShot/role.png)
 
-## role update
+## role update(Jun/29/2024)
 ![](./screenShot/roleupdate.png)
 ![](./screenShot/roleupdated.png)
+## user API (JUL/1/2024)
+### back end code
+```
+// add user
+router.post('/manage/user/add', (req, res) => {
+  // get the parameter of req
+  const {username, password} = req.body
+  // check user  existed or not
+  UserModel.findOne({username})
+    .then(user => {
+      // if exist
+      if (user) {
+        res.send({status: 1, msg: 'user existed'})
+        return new Promise(() => {
+        })
+      } else { // not exist
+        // save
+        return UserModel.create({...req.body, password: md5(password || 'chan')})
+      }
+    })
+    .then(user => {
+      res.send({status: 0, data: user})
+    })
+    .catch(error => {
+      console.error('register err', error)
+      res.send({status: 1, msg: 'register err'})
+    })
+})
+
+
+// update user
+router.post('/manage/user/update', (req, res) => {
+  const user = req.body
+  UserModel.findOneAndUpdate({_id: user._id}, user)
+    .then(oldUser => {
+      const data = Object.assign(oldUser, user)
+      res.send({status: 0, data})
+    })
+    .catch(error => {
+      console.error('update user err', error)
+      res.send({status: 1, msg: 'update user err'})
+    })
+})
+
+// delete user
+router.post('/manage/user/delete', (req, res) => {
+  const {userId} = req.body
+  UserModel.deleteOne({_id: userId})
+    .then(() => {
+      res.send({status: 0})
+    })
+})
+
+
+
+// get users
+router.get('/manage/user/list', (req, res) => {
+  UserModel.find({username: {'$ne': 'admin'}}) // '$ne' : not equals !=
+    .then(users => {
+      RoleModel.find().then(roles => {
+        res.send({status: 0, data: {users, roles}})
+      })
+    })
+    .catch(error => {
+      console.error('get users err', error)
+      res.send({status: 1, msg: 'get users err'})
+    })
+})
+```
+
 
 
 
