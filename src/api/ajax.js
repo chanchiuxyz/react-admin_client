@@ -9,7 +9,7 @@ const ajax = (url, data={}, method='get') => {
     return new Promise(function (resolve, reject) {
         let promise
         // ajax asyn request
-        console.log(url,data,method)
+        // console.log(url,data,method)
         if(method === 'get') {
             promise = axios.get(url, {
                 params: data

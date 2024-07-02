@@ -9,6 +9,16 @@ const BASE = 'http://localhost:3000'
 // login
 export const reqLogin = (username, password)=> ajax(BASE + '/login', {username, password}, 'post')
 
+
+
+// get users
+export const reqUsers = () => ajax(BASE + '/manage/user/list')
+// delete user
+export const reqDeleteUser = (userId) => ajax(BASE + '/manage/user/delete', {userId}, 'POST')
+// add/update user
+export const reqAddOrUpdateUser = (user) => ajax(BASE + '/manage/user/'+(user._id ? 'update' : 'add'), user, 'POST')
+
+
 // add category
 export const reqAddCategory = (categoryName, parentId) => ajax(BASE + '/manage/category/add', {categoryName, parentId}, 'post')
 
