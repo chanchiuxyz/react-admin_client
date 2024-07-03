@@ -359,6 +359,9 @@ router.get('/manage/user/list', (req, res) => {
 ## user layout (Jul/2/2024)
 ![](./screenShot/usercreate.png)
 
+## user save to back-end and show in front-end  (Jul/2/2024)
+![](./screenShot/userlist.png)
+
 
 
 

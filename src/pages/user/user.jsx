@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
-import { Button, Card, Table, Modal } from 'antd'
+import { Button, Card, Table, Modal, message } from 'antd'
 
 import './user.css'
 import { PAGE_SIZE } from '../../utils/constants'
 import { formateDate } from '../../utils/dateUtils'
-import { reqUsers } from '../../api'
+import { reqAddOrUpdateUser, reqUsers } from '../../api'
 import UserForm from './user-form'
+// import MyInput from './input'
 
 
 export default function User() {
@@ -15,6 +16,7 @@ export default function User() {
   const [user, setUser] = useState(null)
   const [roles, setRoles] = useState([])
   const [isShow, setIsShow] = useState(false)
+  const formRef = useRef(null)
 
 
   useEffect(() => {
@@ -42,6 +44,26 @@ export default function User() {
           </Button>
   )
 
+  const addOrUpdateUser = async() => {
+    try {
+      setIsShow(false)
+      const values = await formRef.current.validateFields();
+      // console.log('formData:', values);
+      // handle form data
+      const formUser = values
+      if (user) {
+        formUser._id = user._id
+      }
+      const result = await reqAddOrUpdateUser(formUser)
+      if (result.status === 0) {
+        console.log(user)
+        message.success(user? 'update successed' : 'create successed')
+        getUsers()
+      }
+    } catch (errorInfo) {
+      console.log('err:', errorInfo);
+    }
+  }
 
   const columns = [
         {
@@ -92,8 +114,13 @@ export default function User() {
             title={user && user.id ? 'Modify User' : 'Create User'}
             open={isShow}
             onCancel={()=> setIsShow(false)}
+            onOk={addOrUpdateUser}
         >
-          <UserForm />
+          {/* <UserForm ref={formRef} /> */}
+          <UserForm ref={formRef}
+                    roles={roles}
+                    user={user}
+          />
 
         </Modal>
     </Card>
