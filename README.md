@@ -359,8 +359,12 @@ router.get('/manage/user/list', (req, res) => {
 ## user layout (Jul/2/2024)
 ![](./screenShot/usercreate.png)
 
-## user save to back-end and show in front-end  (Jul/2/2024)
+## user save to back-end and show in front-end  (Jul/3/2024)
 ![](./screenShot/userlist.png)
+
+## user modify and delete(commit to back-end) finished  (Jul/4/2024)
+![](./screenShot/usermodify.png)
+
 
 
 

@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react'
+import React, { forwardRef, useEffect } from 'react'
 
 import { Form, Input, Select } from 'antd'
 
@@ -7,14 +7,17 @@ const Option = Select.Option
 
  const UserForm = forwardRef(function UserForm(props, ref) {
 
+
+
     const formItemLayout = {
         labelCol: { span: 6 },  
         wrapperCol: { span: 15 },
     }
     const {roles, user} = props
+    console.log(user)
   return (
-    <Form {...formItemLayout} className='user-form' ref={ref}>
-        <Item label='User Name:' name='username'>
+    <Form {...formItemLayout} className='user-form' ref={ref} initialValues={user}>
+        <Item label='User Name:' name='username' >
             <Input placeholder='user name' />
 
         </Item>
@@ -24,7 +27,7 @@ const Option = Select.Option
 
         </Item>
 
-        <Item label='Mobile' name='phone'>
+        <Item label='Mobile' name='phone' >
             <Input placeholder='mobile' />
 
         </Item>
