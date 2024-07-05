@@ -1,7 +1,7 @@
 // import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   AppstoreOutlined,
   ContainerOutlined,
@@ -21,9 +21,54 @@ import './index.css'
 
 
 
+
  function MainSider() {
     const [collapsed, setCollapsed] = useState(false);
+    const [menuNodes, setMenuNodes] = useState([])
     const navigate = useNavigate()
+    useEffect(() => {
+        const menuNodes = getMenuNodes(menuItem)
+        setMenuNodes(menuNodes)
+    },[])
+//  check role authorites
+
+    const getMenuNodes = (menuItem) => {
+        console.log('=====',menuItem)
+        return menuItem.reduce((pre,item) => {
+            if (hasAuth(item)) {
+              // withou children
+                if(!item.children) {
+                    pre.push(item)  
+                } else {
+                    let newItem = {...item}
+                    newItem.children = []
+                    item.children.map((cItem) => {
+                         if (hasAuth(cItem)) {
+                          newItem.children.push(cItem)
+                          }                         
+                    })
+                    pre.push(newItem)
+                }
+                console.log(pre)
+
+            }
+            return pre
+        },[]) 
+
+    }
+    // check if user have right of item
+    const hasAuth = (item) => {
+        const {key, isPublic} = item
+        const user = JSON.parse(localStorage.getItem('user') || '{}')
+        const { username, role } = user
+        console.log('-----',username,role)
+        if (username === 'admin' || isPublic || role.menus.indexOf(key) !== -1) {
+            return true
+        } else if (item.children) { // check children
+            return !!item.children.find(child => role.menus.indexOf(child.key) !== -1)
+        }
+        return false
+    }
     const toggleCollapsed = () => {
       setCollapsed(!collapsed);
     };
@@ -56,7 +101,7 @@ import './index.css'
         mode="inline"
         theme="dark"
         inlineCollapsed={collapsed}
-        items={menuItem}
+        items={menuNodes}
         onClick={handleClick}
       />
       {/* <Link to={} /> */}

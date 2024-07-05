@@ -364,6 +364,9 @@ router.get('/manage/user/list', (req, res) => {
 
 ## user modify and delete(commit to back-end) finished  (Jul/4/2024)
 ![](./screenShot/usermodify.png)
+## menus manage by role authority  (Jul/4/2024)
+![](./screenShot/menusrole.png)
+![](./screenShot/menusmanage.png)
 
 
 

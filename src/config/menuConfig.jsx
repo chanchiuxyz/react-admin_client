@@ -16,6 +16,7 @@ const  menuItems = [
       key: '/admin',
       icon: <HomeOutlined />,
       label: 'Home Page',
+      isPublic: true,
     },
     {
       key: 'Merchandise',
