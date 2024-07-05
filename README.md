@@ -86,6 +86,11 @@ https://github.com/jgthms/minireset.css/blob/master/minireset.css
 ![](./screenShot/loginResponse.png)
 ## Main Layout (Jun/7/2024)
 ![](./screenShot/main.png)
+---------------------------
+## Latest Main Layout (Jul/5/2024)
+---------------------------
+![](./screenShot/echartbar.png)
+
 ## Icon and Routes components (Jun/8/2024)
 ![](./screenShot/icon.png)
 ## Header (Jun/9/2024)
