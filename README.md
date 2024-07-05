@@ -368,6 +368,20 @@ router.get('/manage/user/list', (req, res) => {
 ![](./screenShot/menusrole.png)
 ![](./screenShot/menusmanage.png)
 
+## echart dependency (Jul/5/2024)
+```
+npm i echarts-for-react
+npm install @antv/data-set
+```
+
+## echart pages (Jul/5/2024)
+### echart bar (Jul/5/2024)
+![](./screenShot/echartbar.png)
+### echart line (Jul/5/2024)
+![](./screenShot/echartline.png)
+### echart pie (Jul/5/2024)
+![](./screenShot/echartpie.png)
+
 
 
 

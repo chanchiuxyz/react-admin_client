@@ -29,6 +29,8 @@ const contentStyle = {
   minHeight: 120,
   lineHeight: '120px',
   color: '#fff',
+  height: '100%',
+  maxHeight: '100%',
   // backgroundColor: '#0958d9',
 };
 const siderStyle = {
@@ -39,8 +41,9 @@ const siderStyle = {
   // backgroundColor: '#1677ff',
 };
 const footerStyle = {
+  marginTop: '10px',
   textAlign: 'center',
-  color: '#fff',
+  color: '#aaa',
   height: '10%',
   // backgroundColor: '#4096ff',
 };
@@ -51,6 +54,7 @@ const layoutStyle = {
   width: '100%',
 //   maxWidth: 'calc(100% - 8px)',
   height: '100%',
+  maxHeight: '100%',
 };
 const Admin = () => {
     const user = memoryData.user
@@ -106,7 +110,8 @@ const Admin = () => {
      
         </Content>
 
-        <Footer style={footerStyle}>Footer</Footer>
+        <Footer style={footerStyle}><p>Contact: Chiu Chan (Tim) 
+        &nbsp; &nbsp;Vancouver Canada </p><p>Email: chanchiuxyz@gmail.com &nbsp; &nbsp; mobile: +1(672) 380-6723</p> </Footer>
       </Layout>
     </Layout>
 

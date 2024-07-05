@@ -193,7 +193,7 @@ export default function Category() {
                       pag
                       loading = {loading}
                   
-                  />;
+                  />
                   {/* add category form */}
                   <Modal
                       title="Add Category"
