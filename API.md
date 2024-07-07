@@ -202,7 +202,8 @@
 	|parameter		|required |type     |memo
 	|parentId    |Y       |string   |father's id
 
-### response：：
+### response：
+```
     categary I:
       {
         "status": 0,
@@ -239,6 +240,7 @@
           }
         ]
       }
+```
 
 ## 8 modify category
 ### reqURL：
