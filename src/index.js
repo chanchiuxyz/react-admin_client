@@ -4,15 +4,19 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import memoryData from './utils/memoryData';
+import store from './redux/store';
+import { Provider } from 'react-redux';
 
 memoryData.user = JSON.parse(localStorage.getItem('user') || '{}');
 console.log('user',memoryData.user)
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <Provider store={store}>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+  </Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function

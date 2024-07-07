@@ -11,7 +11,11 @@ serve build
 <!-- it works -->
 
 npm install react-router-dom
- npm install axios
+npm install axios
+
+<!-- react-redux -->
+npm install @reduxjs/toolkit react-redux
+
 
 ```
 
@@ -385,6 +389,68 @@ npm install @antv/data-set
 ![](./screenShot/echartline.png)
 ### echart pie (Jul/5/2024)
 ![](./screenShot/echartpie.png)
+
+## redux manage states(Jul/6/2024)
+install
+```
+npm install @reduxjs/toolkit react-redux
+```
+### redux codes(store) 
+```
+import { configureStore } from '@reduxjs/toolkit'
+
+import titleReducer from './reducers/title'
+export default configureStore({
+    reducer: {
+        title: titleReducer,
+    },
+  })
+```
+### redux codes(reducer) 
+```
+import { createSlice } from "@reduxjs/toolkit"
+
+export const titleSlice = createSlice({
+    name: 'title',
+    initialState: {
+        value: 'Home'
+    },
+
+    reducers: {
+            // Redux Toolkit allows us to write "mutating" logic in reducers. It
+            // doesn't actually mutate the state because it uses the immer library,
+            // which detects changes to a "draft state" and produces a brand new
+            // immutable state based off those changes
+        setTitle: (state, action) => {
+            state.value = action.payload
+        }
+    }
+})
+
+export const {setTitle} = titleSlice.actions
+// The function below is called a selector and allows us to select a value from
+// the state. Selectors can also be defined inline where they're used instead of
+// in the slice file. For example: `useSelector((state) => state.counter.value)`
+export const selectTitle = (state) => state.title.value
+export default titleSlice.reducer
+
+
+```
+### redux codes(dispatch) src/component/mian-sider/index.jsx
+```
+import { useDispatch } from 'react-redux';
+import { setTitle } from '../../redux/reducers/title';
+
+   dispatch(setTitle(title)) 
+``` 
+### redux codes(Use Redux State and Actions in React Components) src/component/main-header/index.jsx
+```
+import { useSelector } from 'react-redux';
+import { selectTitle } from '../../redux/reducers/title';
+
+ const title = useSelector(selectTitle)
+```
+
 
 
 

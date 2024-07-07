@@ -6,6 +6,9 @@ import { ExclamationCircleOutlined } from '@ant-design/icons'
 import memoryData from '../../utils/memoryData';
 import { formateDate } from '../../utils/dateUtils';
 import menuItems from '../../config/menuConfig'
+// redux
+import { useSelector } from 'react-redux';
+import { selectTitle } from '../../redux/reducers/title';
 
 
 import './index.css'
@@ -17,6 +20,8 @@ export default function MainHeader() {
   // console.log(location)  
   const navigate = useNavigate()
   // const [modal, contextHolder] = Modal.useModal();
+  // get state from redux , dispatch code in 'main-sider/index.jsx'
+  const title = useSelector(selectTitle)
 
   const logout = () => {
 
@@ -40,38 +45,39 @@ export default function MainHeader() {
 
   
   }
+// get state from redux , don't need the code here
+  //  const getTitle = ()=> {
 
-   const getTitle = ()=> {
-
-      let path = location.pathname
-      const index = path.indexOf('/',1)
-      if ( index >0 ) path = path.slice(0,index)
-      // console.log(path)
-      if (path === '/') {
-        return 'Homepage'
-      }
-      let title = ''
-      menuItems.forEach(item => {
-        if (item.key === path){
-          title = item.label
-        } 
-        else if (item.children){
-         const cItem = item.children.find(cItem =>
-          cItem.key === path
-         )
-         if (cItem) {
-            title = cItem.label
-         }
-        }
-      })
+  //     let path = location.pathname
+  //     console.log(path)
+  //     const index = path.indexOf('/',1)
+  //     if ( index >0 ) path = path.slice(0,index)
+  //     console.log(path)
+  //     if (path === '/') {
+  //       return 'Homepage'
+  //     }
+  //     let title = ''
+  //     menuItems.forEach(item => {
+  //       if (item.key === path){
+  //         title = item.label
+  //       } 
+  //       else if (item.children){
+  //        const cItem = item.children.find(cItem =>
+  //         cItem.key === path
+  //        )
+  //        if (cItem) {
+  //           title = cItem.label
+  //        }
+  //       }
+  //     })
       // if (title = ''){
       //   let title = path.slice(1)
 
       // } 
-      return title
-  }
-
-  const showTitle = getTitle()
+      // return title
+  // }
+// get state from redux , don't need the code here
+  // const showTitle = getTitle()
   // console.log(showTitle)
 
   const username = memoryData.user.username
@@ -97,7 +103,9 @@ export default function MainHeader() {
             <Button className='logout' type='primary' onClick={logout}>Logout</Button>
         </div>
         <div className='header-bottom'>
-            <div className='header-bottom-left'>{showTitle}</div>
+            {/* <div className='header-bottom-left'>{showTitle}</div> */}
+            {/* get state from redux */}
+            <div className='header-bottom-left'>{title}</div>
             <div className='header-bottom-right'>
                 <span>{time}</span>
             </div>

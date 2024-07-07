@@ -16,16 +16,17 @@ import { Button, Menu } from 'antd';
 import menuItem from '../../config/menuConfig'
 
 import logo from '../../pic/logo512.png'
+// redux
+import { useDispatch } from 'react-redux';
+import { setTitle } from '../../redux/reducers/title';
 
 import './index.css'
-
-
-
 
  function MainSider() {
     const [collapsed, setCollapsed] = useState(false);
     const [menuNodes, setMenuNodes] = useState([])
     const navigate = useNavigate()
+    const dispatch = useDispatch()
     useEffect(() => {
         const menuNodes = getMenuNodes(menuItem)
         setMenuNodes(menuNodes)
@@ -72,9 +73,30 @@ import './index.css'
     const toggleCollapsed = () => {
       setCollapsed(!collapsed);
     };
-
+    // get label of MenuItem by key 
+    const getMenulabelByKey = (key) => {
+      let title = ''
+      menuNodes.forEach(item => {
+              if (item.key === key){
+                title = item.label
+              } 
+              else if (item.children){
+               const cItem = item.children.find(cItem =>
+                cItem.key === key
+               )
+               if (cItem) {
+                  title = cItem.label
+               }
+              }
+            })
+      return title
+    }
     const handleClick = (e)=> {
-        navigate(e.key)
+      // console.log(e.item) 
+      const title = getMenulabelByKey(e.key)
+      dispatch(setTitle(title)) 
+      navigate(e.key)
+
 
     }
   return (
