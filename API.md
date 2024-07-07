@@ -325,6 +325,7 @@
     |pageSize   |Y       |Number   |page size
 
 ### response：
+```
    {
     "status": 0,
     "data": {
@@ -382,7 +383,7 @@
         ]
     }
 }
-
+```
 
 ## 12 add role
 
