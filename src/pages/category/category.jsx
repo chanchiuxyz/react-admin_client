@@ -37,14 +37,15 @@ export default function Category() {
         // loaded...
         console.log('pp',parentId)
         setLoading(false)
-        if (parentId === '0'){
-            setCategoriesParent(result.data)
-            console.log('pp',categoriesParent)
-        }
-        else {
-            setCategoriesSub(result.data)
-        }
-        console.log('resut',result)
+        // if (parentId === '0'){
+        //     setCategoriesParent(result.data)
+        //     console.log('pp',categoriesParent)
+        // }
+        // else {
+        //     setCategoriesSub(result.data)
+        // }
+        // console.log('resut',result)
+        setCategoriesParent(result)
 
         
     }

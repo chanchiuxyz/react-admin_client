@@ -25,11 +25,15 @@ export const reqAddOrUpdateUser = (user) => ajax(BASE + '/manage/user/'+(user._i
 
 
 // add category
-export const reqAddCategory = (categoryName, parentId) => ajax(BASE + '/manage/category/add', {categoryName, parentId}, 'post')
+// export const reqAddCategory = (categoryName, parentId) => ajax(BASE + '/manage/category/add', {categoryName, parentId}, 'post')
+// for python
+export const reqAddCategory = (categoryName, parentId) => ajax(BASE + `/categories/?name=${categoryName}&parentId=${parentId}`, {name:categoryName, parentId}, 'post')
 
 // get categories
 
-export const reqGetCategories = (parentId = 0) => ajax(BASE + '/manage/category/list',{parentId})
+// export const reqGetCategories = (parentId = 0) => ajax(BASE + '/manage/category/list',{parentId})
+// for python
+export const reqGetCategories = (parentId = 0) => ajax(BASE + '/categories/',{parentId})
 // get category name by category id
 export const reqCategoryName = (categoryId) => ajax(BASE + '/manage/category/name', {categoryId})
 // modify category
