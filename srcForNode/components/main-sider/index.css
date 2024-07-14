@@ -1,0 +1,25 @@
+.left-nav {
+    display: flex;
+    flex-direction: column;
+    /* background-color: red; */
+}
+
+.left-nav-header {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    background-color: #002140;
+    width: 100%;
+    /* flex-direction: row; */
+}
+
+.logo {
+    width: 40px;
+    height: 40px;
+    margin: 0 15px;
+}
+
+h1 {
+    font-size: 30px;
+}

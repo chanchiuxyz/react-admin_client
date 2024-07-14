@@ -4,20 +4,15 @@ import ajax from './ajax'
 // import jsonp from 'jsonp'
 // import {message} from 'antd'
 
-const BASE = 'http://localhost:8000/api'
+const BASE = 'http://localhost:3000'
 // const BASE = ''
 // login
-// export const reqLogin = (username, password)=> ajax(BASE + '/api/user/getuser/', {username, password}, 'post')
-// get token from django server
-export const reqGetToken = ()=> ajax(BASE + '/login/', {username:'test', password:'chanchiu'}, 'post')
-export const reqLogin = (username, password)=> ajax(BASE + '/users/getuser/' , {username, password}, 'post')
+export const reqLogin = (username, password)=> ajax(BASE + '/login', {username, password}, 'post')
 
-// http://127.0.0.1:8000/api/user/getuser/?username=test&password=test
 
-// get users for node.js
-// export const reqUsers = () => ajax(BASE + '/manage/user/list')
-//  get users for python django rest framework
-export const reqUsers = () => ajax(BASE + '/users/','get')
+
+// get users
+export const reqUsers = () => ajax(BASE + '/manage/user/list')
 // delete user
 export const reqDeleteUser = (userId) => ajax(BASE + '/manage/user/delete', {userId}, 'POST')
 // add/update user
@@ -49,7 +44,7 @@ export const reqMerchandise = ({pageNum, pageSize}) => ajax(BASE + '/manage/merc
 export const reqCreateRole = (roleName) => ajax(BASE + '/manage/role/create', {roleName}, 'post')
 
 // get roles
-export const reqRoles = () => ajax(BASE + '/roles/')
+export const reqRoles = () => ajax(BASE + '/manage/role/list')
 
 // update role privilege (authorize) 
 export const reqUpdateRole = (role) => ajax(BASE + '/manage/role/update', role, 'post')

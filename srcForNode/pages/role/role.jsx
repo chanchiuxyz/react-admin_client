@@ -20,12 +20,12 @@ const columns = [
 {
     title: 'Create Time',
     dataIndex: 'create_time',
-    // render: (create_time) => formateDate(create_time)
+    render: (create_time) => formateDate(create_time)
 },
 {
     title: 'Authorize time',
     dataIndex: 'auth_time',
-    // render: (auth_time) => formateDate(auth_time)
+    render: (auth_time) => formateDate(auth_time)
 },
 {
     title: 'Authorizer',
@@ -39,7 +39,6 @@ export default function Role() {
   const [isShowAuth, setIsShowAuth] = useState(false)
   // roles 
   const [roles, setRoles] = useState([])
-  console.log('----------',roles)
   // selected role
   const [role, setRole] = useState({})
     // role name for create fole
@@ -57,10 +56,9 @@ export default function Role() {
   //  get roles from back-end
   const getRoles = async () => {
       const result = await reqRoles()
-      // console.log('getroles',Array.isArray(result))
-      if (result) {
-          // const roles = result
-          setRoles(result)
+      if (result.status === 0) {
+          const roles = result.data 
+          setRoles(roles)
       }
   }
 

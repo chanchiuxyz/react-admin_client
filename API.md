@@ -19,7 +19,7 @@
 ## 1. login
 
 ### reqURL：
-	http://localhost:5000/login
+	http://localhost:8000/manage/api/user/getuser
 
 ### method：
 	POST
