@@ -20,13 +20,20 @@ const ajax = (url, data={}, method='get') => {
             promise = axios.get(url, {
                 params: data
             })
-        } else {
+        } else if(method === 'post') {
             // if (url.indexOf('api/login')>0) {
             //     url += '/?usernmae=' + data.username + '&password=' + data.password
             //     console.log('url',url)
             // }
             promise = axios.post(url, data)
+        }  else if(method === 'patch') {
+            // if (url.indexOf('api/login')>0) {
+            //     url += '/?usernmae=' + data.username + '&password=' + data.password
+            //     console.log('url',url)
+            // }
+            promise = axios.patch(url, data)
         }
+
 
         promise.then(response => {
             // if success resolve(response.data)

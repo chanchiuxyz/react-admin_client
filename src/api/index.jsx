@@ -37,7 +37,9 @@ export const reqGetCategories = (parentId = 0) => ajax(BASE + '/categories/',{pa
 // get category name by category id
 export const reqCategoryName = (categoryId) => ajax(BASE + '/manage/category/name', {categoryId})
 // modify category
-export const reqModifyCategory = ( categoryId,categoryName) => ajax(BASE + '/manage/category/modify', {categoryId, categoryName}, 'post')
+// export const reqModifyCategory = ( categoryId,categoryName) => ajax(BASE + '/manage/category/modify', {categoryId, categoryName}, 'post')
+// for python
+export const reqModifyCategory = ( categoryId,categoryName) => ajax(BASE + `/categories/${categoryId}/`, {'name':categoryName}, 'patch')
 
 // delete picture
 export const reqDeleteImg = (name) => ajax(BASE + '/manage/img/delete', {name}, 'post')

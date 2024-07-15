@@ -80,16 +80,16 @@ export default function Category() {
         setShowStatus(0)
         const{_id,name} = categoryObj
         const result = await reqModifyCategory(_id, name)
-        console.log(result)
-        if (result.status === 0) {
-            message.success('successed')
-            // rerender data
-            getCategories() 
-        }
-        else {
-          message.error(result.msg)
-        }
-
+        console.log('patch response',result)
+        // if (result.status === 0) {
+        //     message.success('successed')
+        //     // rerender data
+        //     getCategories() 
+        // }
+        // else {
+        //   message.error(result.msg)
+        // }
+        getCategories() 
     })
     const columns = [
         {
