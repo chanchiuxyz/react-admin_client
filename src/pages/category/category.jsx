@@ -133,13 +133,19 @@ export default function Category() {
         const { categoryName, parentId } = categoryObj 
         // console.log(categoryObj)
         const result = await reqAddCategory(categoryName, parentId)
-        console.log(result)
-        if (result.status === 0) {
+        // console.log(result)
+        // if (result.status === 0) {
+        //     message.success('successed')
+        //   getCategories() 
+        // }
+        // else {
+        //   message.error(result.msg)
+        // }
+        if (result.url) {
             message.success('successed')
-          getCategories() 
-        }
-        else {
-          message.error(result.msg)
+            getCategories() 
+        } else {
+            message.error(result.message)
         }
     })
     // pass the function by props to AddForm
