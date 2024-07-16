@@ -27,7 +27,7 @@ export const reqAddOrUpdateUser = (user) => ajax(BASE + '/manage/user/'+(user._i
 // add category
 // export const reqAddCategory = (categoryName, parentId) => ajax(BASE + '/manage/category/add', {categoryName, parentId}, 'post')
 // for python
-export const reqAddCategory = (categoryName, parentId) => ajax(BASE + `/categories/`, {name:categoryName, parentId}, 'post')
+export const reqAddCategory = (categoryName, parentId) => ajax(BASE + `/categories/`, {'name':categoryName, 'parentId':parentId}, 'post')
 
 // get categories
 

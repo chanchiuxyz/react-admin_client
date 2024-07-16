@@ -131,7 +131,7 @@ export default function Category() {
         setShowStatus(0)
         // console.log('category',categoryObj)
         const { categoryName, parentId } = categoryObj 
-        // console.log(categoryObj)
+        console.log(categoryObj)
         const result = await reqAddCategory(categoryName, parentId)
         // console.log(result)
         // if (result.status === 0) {
@@ -151,6 +151,7 @@ export default function Category() {
     // pass the function by props to AddForm
     const getCategoryObj = (categoryName,parentId) => {
         setCategoryObj({categoryName,parentId})
+        console.log('154 getcategoryobj', categoryObj)
     }
     const extra = (
         <Button onClick={showAdd} type='primary'>
