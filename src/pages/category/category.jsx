@@ -33,6 +33,7 @@ export default function Category() {
     const getCategories = async(parentId='0') => {
         // loading...
         setLoading(true)
+        if (typeof(parentId) == 'number') parentId = parentId.toString()
         const result = await reqGetCategories(parentId)
         // loaded...
         console.log('pp',parentId)
@@ -45,7 +46,10 @@ export default function Category() {
         //     setCategoriesSub(result.data)
         // }
         // console.log('resut',result)
-        setCategoriesParent(result)
+        if (parentId==='0')
+            setCategoriesParent(result)
+        else
+            setCategoriesSub(result)
 
         
     }
@@ -78,9 +82,9 @@ export default function Category() {
     const modifyCategory = (async() => {
         // unshow modify form
         setShowStatus(0)
-        const{_id,name} = categoryObj
+        const{_id,name,parentId} = categoryObj
         const result = await reqModifyCategory(_id, name)
-        console.log('patch response',result)
+        console.log('patch response',categoryObj)
         // if (result.status === 0) {
         //     message.success('successed')
         //     // rerender data
@@ -89,7 +93,7 @@ export default function Category() {
         // else {
         //   message.error(result.msg)
         // }
-        getCategories() 
+        getCategories(parentId) 
     })
     const columns = [
         {
