@@ -5,8 +5,9 @@ import { PlusOutlined } from '@ant-design/icons'
 
 
 
-import {reqGetCategories, reqDeleteImg, reqAddMerchandise} from '../../api'
+import {reqGetCategories, reqDeleteImg, reqAddMerchandise, uploadImg} from '../../api'
 import './merchandise.css'
+import { upload } from '@testing-library/user-event/dist/upload'
 
 
 
@@ -36,6 +37,7 @@ export default function MerchandiseAddUpdate() {
       console.log(values)
       const {name, desc, price} = values
       const {categoryId,pCategoryId} = category
+      console.log(typeof(categoryId),typeof(pCategoryId))
       
       const imgs = fileList.map((file) => {
           return file.response.data.name
@@ -65,15 +67,22 @@ export default function MerchandiseAddUpdate() {
   const getCategories = async (parentId) => {
     const result = await reqGetCategories(parentId)
     console.log(parentId)
-    if (result.status === 0) {
-      const categories = result.data
-      // debugger
-      // if categories
-      if (parentId === '0'){
-        initOptions(categories)
-      } else {
-        return categories  //subCategories
-      }
+    // if (result.status === 0) {
+    //   const categories = result.data
+    //   // debugger
+    //   // if categories
+    //   if (parentId === '0'){
+    //     initOptions(categories)
+    //   } else {
+    //     return categories  //subCategories
+    //   }
+    // }
+    if (result) {
+          if (parentId === '0'){
+            initOptions(result)
+          } else {
+            return result  //subCategories
+          }
     }
   }
   // cascader load subCategories 
@@ -115,6 +124,14 @@ export default function MerchandiseAddUpdate() {
 
   const handlePreview = (file) => {
       console.log('handlePreview()', file)
+
+  }
+  const uploadPicure = async (file) => {
+      console.log('upload')
+      console.log(file)
+      const result = await uploadImg(file)
+      console.log(result)
+
 
   }
   const handleUploadChange = async (file) => {
@@ -201,7 +218,7 @@ export default function MerchandiseAddUpdate() {
               </Item>
               {/* Merchandise pic upload */}
               <Item label='Merchandise Picture' >
-                  <Upload action="/manage/img/upload" 
+                   <Upload action={uploadPicure}
                     accept='image/*'  
                     name='image' 
                     listType="picture-card" 

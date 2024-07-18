@@ -43,6 +43,7 @@ export const reqModifyCategory = ( categoryId,categoryName) => ajax(BASE + `/cat
 
 // delete picture
 export const reqDeleteImg = (name) => ajax(BASE + '/manage/img/delete', {name}, 'post')
+export const uploadImg = (file) => ajax(BASE + '/upload/', {file}, 'post')
 
 // add merchandise
 export const reqAddMerchandise = (merchandise) => ajax(BASE + '/manage/merchandise/add', merchandise, 'post')

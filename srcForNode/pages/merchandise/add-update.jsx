@@ -201,7 +201,7 @@ export default function MerchandiseAddUpdate() {
               </Item>
               {/* Merchandise pic upload */}
               <Item label='Merchandise Picture' >
-                  <Upload action="/manage/img/upload" 
+                  <Upload action="/api/upload" 
                     accept='image/*'  
                     name='image' 
                     listType="picture-card" 
