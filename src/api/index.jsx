@@ -46,10 +46,10 @@ export const reqDeleteImg = (name) => ajax(BASE + '/manage/img/delete', {name}, 
 export const uploadImg = (file) => ajax(BASE + '/upload/', {file}, 'post')
 
 // add merchandise
-export const reqAddMerchandise = (merchandise) => ajax(BASE + '/manage/merchandise/add', merchandise, 'post')
+export const reqAddMerchandise = (merchandise) => ajax(BASE + '/products/', merchandise, 'post')
 
 // get merchandise
-export const reqMerchandise = ({pageNum, pageSize}) => ajax(BASE + '/manage/merchandise/list', {pageNum, pageSize})
+export const reqMerchandise = ({pageNum, pageSize}) => ajax(BASE + '/products/', {pageNum, pageSize})
 
 
 // add role
