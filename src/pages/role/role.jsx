@@ -57,7 +57,7 @@ export default function Role() {
   //  get roles from back-end
   const getRoles = async () => {
       const result = await reqRoles()
-      // console.log('getroles',Array.isArray(result))
+      console.log('getroles',result)
       if (result) {
           // const roles = result
           setRoles(result)
@@ -94,7 +94,7 @@ export default function Role() {
       }
       const result = await reqCreateRole(roleName)
       console.log(result)
-      if (result.status === 0) {
+      if (result) {
         message.success('successed')
         getRoles()
       }
@@ -110,8 +110,7 @@ export default function Role() {
       const menus = authMenus
       updateRole.menus = menus
       updateRole.auth_time = Date.now
-      updateRole.auth_name = 'admin'
-
+      updateRole.authname = 'admin'
       const result = await reqUpdateRole(updateRole)
       
       if (result.status === 0) {

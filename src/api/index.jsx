@@ -53,10 +53,10 @@ export const reqMerchandise = ({pageNum, pageSize}) => ajax(BASE + '/products/',
 
 
 // add role
-export const reqCreateRole = (roleName) => ajax(BASE + '/manage/role/create', {roleName}, 'post')
+export const reqCreateRole = (roleName) => ajax(BASE + '/roles/', {'name':roleName}, 'post')
 
 // get roles
-export const reqRoles = () => ajax(BASE + '/roles/')
+export const reqRoles = () => ajax(BASE + '/roles/',{},'get')
 
 // update role privilege (authorize) 
-export const reqUpdateRole = (role) => ajax(BASE + '/manage/role/update', role, 'post')
+export const reqUpdateRole = (role) => ajax(BASE + `/roles/${role._id}/`, role, 'patch')
