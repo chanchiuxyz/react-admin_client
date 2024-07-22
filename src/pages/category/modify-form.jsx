@@ -15,7 +15,7 @@ export default function ModifyForm(props) {
     const getCategory = (e) => {
         const categoryName = e.target.value 
       
-        // console.log(categoryName)
+        console.log(categoryName)
         props.setModifyObj(categoryName)
     }
   return (

@@ -33,23 +33,18 @@ export default function Category() {
     const getCategories = async(parentId='0') => {
         // loading...
         setLoading(true)
-        if (typeof(parentId) == 'number') parentId = parentId.toString()
         const result = await reqGetCategories(parentId)
         // loaded...
         console.log('pp',parentId)
         setLoading(false)
-        // if (parentId === '0'){
-        //     setCategoriesParent(result.data)
-        //     console.log('pp',categoriesParent)
-        // }
-        // else {
-        //     setCategoriesSub(result.data)
-        // }
-        // console.log('resut',result)
-        if (parentId==='0')
-            setCategoriesParent(result)
-        else
-            setCategoriesSub(result)
+        if (parentId === '0'){
+            setCategoriesParent(result.data)
+            console.log('pp',categoriesParent)
+        }
+        else {
+            setCategoriesSub(result.data)
+        }
+        console.log('resut',result)
 
         
     }
@@ -82,18 +77,18 @@ export default function Category() {
     const modifyCategory = (async() => {
         // unshow modify form
         setShowStatus(0)
-        const{_id,name,parentId} = categoryObj
+        const{_id,name} = categoryObj
         const result = await reqModifyCategory(_id, name)
-        console.log('patch response',categoryObj)
-        // if (result.status === 0) {
-        //     message.success('successed')
-        //     // rerender data
-        //     getCategories() 
-        // }
-        // else {
-        //   message.error(result.msg)
-        // }
-        getCategories(parentId) 
+        console.log(result)
+        if (result.status === 0) {
+            message.success('successed')
+            // rerender data
+            getCategories() 
+        }
+        else {
+          message.error(result.msg)
+        }
+
     })
     const columns = [
         {
@@ -135,27 +130,20 @@ export default function Category() {
         setShowStatus(0)
         // console.log('category',categoryObj)
         const { categoryName, parentId } = categoryObj 
-        console.log(categoryObj)
+        // console.log(categoryObj)
         const result = await reqAddCategory(categoryName, parentId)
-        // console.log(result)
-        // if (result.status === 0) {
-        //     message.success('successed')
-        //   getCategories() 
-        // }
-        // else {
-        //   message.error(result.msg)
-        // }
-        if (result.url) {
+        console.log(result)
+        if (result.status === 0) {
             message.success('successed')
-            getCategories() 
-        } else {
-            message.error(result.message)
+          getCategories() 
+        }
+        else {
+          message.error(result.msg)
         }
     })
     // pass the function by props to AddForm
     const getCategoryObj = (categoryName,parentId) => {
         setCategoryObj({categoryName,parentId})
-        console.log('154 getcategoryobj', categoryObj)
     }
     const extra = (
         <Button onClick={showAdd} type='primary'>

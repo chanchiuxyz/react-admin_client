@@ -6,16 +6,19 @@ import { useEffect } from 'react'
 import Admin from './pages/admin/admin'
 import Login from './pages/login/login'
 import './App.css'
+import { reqGetToken } from './api'
 
 
 // import {Button} from 'antd'
 function App() {
-  // useEffect(() => {
-  //   return () => {
-  //       localStorage.removeItem('user')
-  //   }
-  // },[]
-  // )
+  useEffect(() => {
+    localStorage.removeItem('user')
+    localStorage.removeItem('token')
+    return () => {
+        localStorage.removeItem('user')
+    }
+  },[]
+  )
   return (
     <div className="App" >
         <BrowserRouter>

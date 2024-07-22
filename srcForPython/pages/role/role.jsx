@@ -20,12 +20,12 @@ const columns = [
 {
     title: 'Create Time',
     dataIndex: 'create_time',
-    render: (create_time) => formateDate(create_time)
+    // render: (create_time) => formateDate(create_time)
 },
 {
     title: 'Authorize time',
     dataIndex: 'auth_time',
-    render: (auth_time) => formateDate(auth_time)
+    // render: (auth_time) => formateDate(auth_time)
 },
 {
     title: 'Authorizer',
@@ -39,6 +39,7 @@ export default function Role() {
   const [isShowAuth, setIsShowAuth] = useState(false)
   // roles 
   const [roles, setRoles] = useState([])
+  console.log('----------',roles)
   // selected role
   const [role, setRole] = useState({})
     // role name for create fole
@@ -56,9 +57,10 @@ export default function Role() {
   //  get roles from back-end
   const getRoles = async () => {
       const result = await reqRoles()
-      if (result.status === 0) {
-          const roles = result.data 
-          setRoles(roles)
+      console.log('getroles',result)
+      if (result) {
+          // const roles = result
+          setRoles(result)
       }
   }
 
@@ -92,7 +94,7 @@ export default function Role() {
       }
       const result = await reqCreateRole(roleName)
       console.log(result)
-      if (result.status === 0) {
+      if (result) {
         message.success('successed')
         getRoles()
       }
@@ -108,8 +110,7 @@ export default function Role() {
       const menus = authMenus
       updateRole.menus = menus
       updateRole.auth_time = Date.now
-      updateRole.auth_name = 'admin'
-
+      updateRole.authname = 'admin'
       const result = await reqUpdateRole(updateRole)
       
       if (result.status === 0) {

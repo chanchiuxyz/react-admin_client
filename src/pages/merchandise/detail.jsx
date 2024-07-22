@@ -19,23 +19,22 @@ export default function MerchandiseDetail(props) {
 
     async function fetchData() {
             
-            console.log('location',location)
             if (pCategoryId === '0') {
               const result = await reqCategoryName(categoryId)
-              const cName1 = result.name
+              const cName1 = result.data
               SetCategory({cName1})
             } else {
-                // get category info and Parent category info at the same time
-                const results = await Promise.all([
-                    reqCategoryName(pCategoryId),
-                    reqCategoryName(categoryId),
-                ])
-                // console.log('promise.all',results)
-                const cName1 = results[0].name
-                const cName2 = results[1].name 
-                SetCategory({cName1, cName2})
-                console.log(cName1,cName2)
-                
+              
+              const results = await Promise.all([
+                  reqCategoryName(pCategoryId),
+                  reqCategoryName(categoryId),
+              ])
+             
+              const cName1 = results[0].data
+              const cName2 = results[1].data 
+              SetCategory({cName1, cName2})
+              // console.log(cName1,cName2)
+              
             }
     }
           fetchData()

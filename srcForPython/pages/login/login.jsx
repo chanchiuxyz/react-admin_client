@@ -1,7 +1,7 @@
 import React,{useState} from 'react';
 import { Navigate, useNavigate,useLocation} from 'react-router-dom'
 import { Button, Form, Input,message } from 'antd';
-import { reqLogin } from '../../api';
+import { reqLogin,reqGetToken } from '../../api';
 
 import memoryData from '../../utils/memoryData'
 import './login.css'
@@ -9,11 +9,18 @@ import './login.css'
 // import './login.less'
 import logo from '../../logo.svg';
 
-
+async function GetToken() {
+    const result = await reqGetToken()
+    console.log('await',result)
+    if (result.status === 0) {
+      localStorage.setItem('token',JSON.stringify(result.data.token))
+    }
+  }
 
 const onFinish = (async(values,setUser) => {
     console.log(values)
-    
+    const token = localStorage.getItem('token')
+    if (!token) GetToken()
     const{username,password} = values
     // axios req 
     // const [location,setLocation] = useLocation();

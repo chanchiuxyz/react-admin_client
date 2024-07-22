@@ -5,7 +5,7 @@ import { Button, Card, Table, Modal, message } from 'antd'
 import './user.css'
 import { PAGE_SIZE } from '../../utils/constants'
 import { formateDate } from '../../utils/dateUtils'
-import { reqAddOrUpdateUser, reqDeleteUser, reqUsers, reqRoles } from '../../api'
+import { reqAddOrUpdateUser, reqDeleteUser, reqUsers } from '../../api'
 import UserForm from './user-form'
 // import MyInput from './input'
 
@@ -25,27 +25,15 @@ export default function User() {
   },[])
 
   const getUsers = async () => {
+      const result = await reqUsers()
+      console.log(result)
+      if (result.status === 0) {
+          const {users, roles} = result.data
+          setUsers(users)
+          setRoles(roles)
+          initRoleNames(roles)
 
-    // for python
-    const results = await Promise.all([
-        reqUsers(),
-        reqRoles(),
-    ])
-
-    const users = results[0]
-    const roles = results[1]
-    setUsers(users)
-    setRoles(roles)
-    initRoleNames(roles)
-    //   const result = await reqUsers()
-    //   console.log(result)
-    //   if (result.status === 0) {
-    //       const {users, roles} = result.data
-    //       setUsers(users)
-    //       setRoles(roles)
-    //       initRoleNames(roles)
-
-    //   }
+      }
   }
 
   const initRoleNames = (roles) => {
@@ -78,7 +66,7 @@ export default function User() {
         formUser._id = user._id
       }
       const result = await reqAddOrUpdateUser(formUser)
-      if (result) {
+      if (result.status === 0) {
         // console.log(user)
         message.success(user? 'update successed' : 'create successed')
         getUsers()
@@ -90,7 +78,7 @@ export default function User() {
 //  delete user
   const deleteUser = async (user) => {
       const result = await reqDeleteUser(user._id)
-      if (result) {
+      if (result.status === 0) {
           message.success('deleted')
       } else {
           message.error('delete err', result.errorInfo)

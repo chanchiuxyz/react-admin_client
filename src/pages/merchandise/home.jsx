@@ -96,20 +96,17 @@ export default function MerchandiseHome() {
             pageNum,
             pageSize: PAGE_SIZE
         })
-        console.log('result:',result)
 
         setLoading(false)
-        // if (result.status === 0) {
-        //     // console.log(result.data)
-        //     const {total, list} = result.data
-        //     setTotal(total)
-        //     setMerchandise(list)
-        // } else {
-        //     message.error(result.msg)
-        // }
-            // const {total, list} = result.data
-            // setTotal(total)
-            setMerchandise(result)
+        if (result.status === 0) {
+            // console.log(result.data)
+            const {total, list} = result.data
+            setTotal(total)
+            setMerchandise(list)
+        } else {
+            message.error(result.msg)
+        }
+
         
         
 

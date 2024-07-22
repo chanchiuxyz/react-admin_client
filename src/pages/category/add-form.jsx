@@ -23,17 +23,14 @@ export default function AddForm(props) {
     
         setCategoryParentId(props.categoryParent.parentId)
         console.log('effect')
-    },[])
+    },[props])
     const getCategory = (e) => {
-        console.log('e.target.value', categoryParentId)
+        // console.log('e.target.value',e.target.value,categoryParentID)
         props.categoryObj(e.target.value,categoryParentId)
     }
 
    
-    const handleChange = (value) => {
-        console.log('handle',value,typeof(value))
-        setCategoryParentId(value)
-    }
+    const handleChange = (value) => setCategoryParentId(value)
 
 
   return (
@@ -49,7 +46,7 @@ export default function AddForm(props) {
                 {categoryParentId === '0' ? <Option value='0'>Category I</Option> : null}
                 
                  {categories.map((categoryObj) => {
-                    return(<Option value={categoryObj._id.toString()}>{categoryObj.name}</Option>)
+                    return(<Option value={categoryObj._id}>{categoryObj.name}</Option>)
                  })}
 
                 {/* option= {categoryOption(props)}

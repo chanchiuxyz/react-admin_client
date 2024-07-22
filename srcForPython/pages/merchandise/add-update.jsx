@@ -5,8 +5,9 @@ import { PlusOutlined } from '@ant-design/icons'
 
 
 
-import {reqGetCategories, reqDeleteImg, reqAddMerchandise} from '../../api'
+import {reqGetCategories, reqDeleteImg, reqAddMerchandise, uploadImg} from '../../api'
 import './merchandise.css'
+import { upload } from '@testing-library/user-event/dist/upload'
 
 
 
@@ -36,6 +37,7 @@ export default function MerchandiseAddUpdate() {
       console.log(values)
       const {name, desc, price} = values
       const {categoryId,pCategoryId} = category
+      console.log(typeof(categoryId),typeof(pCategoryId))
       
       const imgs = fileList.map((file) => {
           return file.response.data.name
@@ -65,15 +67,22 @@ export default function MerchandiseAddUpdate() {
   const getCategories = async (parentId) => {
     const result = await reqGetCategories(parentId)
     console.log(parentId)
-    if (result.status === 0) {
-      const categories = result.data
-      // debugger
-      // if categories
-      if (parentId === '0'){
-        initOptions(categories)
-      } else {
-        return categories  //subCategories
-      }
+    // if (result.status === 0) {
+    //   const categories = result.data
+    //   // debugger
+    //   // if categories
+    //   if (parentId === '0'){
+    //     initOptions(categories)
+    //   } else {
+    //     return categories  //subCategories
+    //   }
+    // }
+    if (result) {
+          if (parentId === '0'){
+            initOptions(result)
+          } else {
+            return result  //subCategories
+          }
     }
   }
   // cascader load subCategories 
@@ -117,32 +126,44 @@ export default function MerchandiseAddUpdate() {
       console.log('handlePreview()', file)
 
   }
+  const uploadPicure = async (file) => {
+      console.log('upload')
+      console.log(file)
+      const result = await uploadImg(file)
+      console.log(result)
+
+
+  }
   const handleUploadChange = async (file) => {
-      // console.log('ff',file.file)
+      console.log('ff',file.file)
       if (file.file.status === 'done') {
-        // console.log('uploaded')
+           console.log('uploaded')
           const result = file.file.response //{status: 0, data: {name: 'xxx.jpg', url: url}}
-          if(result.status === 0) {
-              // message.success('uploaded')
-              // setFileList(file.fileList)
-              // const {name, url} = result.data
-              // console.log(name)
-          } else{
-              message.error('upload err')
-          }
+          // if(result.status === 0) {
+          //     // message.success('uploaded')
+          //     setFileList(file.fileList)
+          //     const {name, url} = result.data
+          //     console.log(name)
+          // } else{
+          //     message.error('upload err')
+          // }
+          // setFileList(file.fileList)
       } else if (file.status === 'removed') { //remove picture
         const resultRemove = file.response //{status: 0, data: {name: 'xxx.jpg', url: url}}
-        if(resultRemove.status === 0) {
+        // if(resultRemove.status === 0) {
+        //     const{name} = resultRemove.data
+        //     const result = await reqDeleteImg(name)
+        //     if (result.status) {
+        //         // message.success('removed')
+        //         setFileList(file.fileList)
+        //     } else {
+        //         message.error('remove error')
+        //     }
+
+        // }
             const{name} = resultRemove.data
             const result = await reqDeleteImg(name)
-            if (result.status) {
-                // message.success('removed')
-                setFileList(file.fileList)
-            } else {
-                message.error('remove error')
-            }
-
-        }
+            // setFileList(file.fileList)
       }
       setFileList(file.fileList)
       console.log('fileList',fileList)
@@ -201,7 +222,7 @@ export default function MerchandiseAddUpdate() {
               </Item>
               {/* Merchandise pic upload */}
               <Item label='Merchandise Picture' >
-                  <Upload action="/manage/img/upload" 
+                   <Upload action='http://localhost:8000/api/upload/'
                     accept='image/*'  
                     name='image' 
                     listType="picture-card" 
@@ -209,7 +230,7 @@ export default function MerchandiseAddUpdate() {
                     onPreview={handlePreview}
                     onChange={handleUploadChange}
                   >
-                  
+                   <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}"></input>
                 <button style={{ border: 0, background: 'none' }} type="button">
                   <PlusOutlined />
                   <div style={{ marginTop: 2 }}>Upload</div>

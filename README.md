@@ -1,8 +1,13 @@
 
+# latest
+## src 
 ```
-folder 'srcForNode' is for Node back-end. (finished)
-folder 'src' is for python django rest framework bakc-end
+folder 'src' is for Node back-end. (finished)
+folder 'srcForPython' is for python django rest framework bakc-end
 ```
+## back-ends code
+https://github.com/chanchiuxyz/react-admin-server
+https://github.com/chanchiuxyz/back_end_python
 # start (Jun/1/2024)
 
 ```
