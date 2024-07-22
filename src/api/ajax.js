@@ -32,6 +32,12 @@ const ajax = (url, data={}, method='get') => {
             //     console.log('url',url)
             // }
             promise = axios.patch(url, data)
+        }  else if(method === 'delete') {
+            // if (url.indexOf('api/login')>0) {
+            //     url += '/?usernmae=' + data.username + '&password=' + data.password
+            //     console.log('url',url)
+            // }
+            promise = axios.delete(url, data)
         }
 
 

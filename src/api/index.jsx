@@ -17,11 +17,11 @@ export const reqLogin = (username, password)=> ajax(BASE + '/users/getuser/' , {
 // get users for node.js
 // export const reqUsers = () => ajax(BASE + '/manage/user/list')
 //  get users for python django rest framework
-export const reqUsers = () => ajax(BASE + '/users/','get')
+export const reqUsers = () => ajax(BASE + '/users/', {}, 'get')
 // delete user
-export const reqDeleteUser = (userId) => ajax(BASE + '/manage/user/delete', {userId}, 'POST')
+export const reqDeleteUser = (userId) => ajax(BASE + `/users/${userId}/`, {userId}, 'delete')
 // add/update user
-export const reqAddOrUpdateUser = (user) => ajax(BASE + '/manage/user/'+(user._id ? 'update' : 'add'), user, 'POST')
+export const reqAddOrUpdateUser = (user) => ajax(BASE + `/users/`+(user._id ? `${user._id}/` : ''), user, (user._id ? 'patch' : 'post'))
 
 
 // add category

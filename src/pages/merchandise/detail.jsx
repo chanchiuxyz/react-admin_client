@@ -30,7 +30,7 @@ export default function MerchandiseDetail(props) {
                     reqCategoryName(pCategoryId),
                     reqCategoryName(categoryId),
                 ])
-                console.log('promise.all',results)
+                // console.log('promise.all',results)
                 const cName1 = results[0].name
                 const cName2 = results[1].name 
                 SetCategory({cName1, cName2})
